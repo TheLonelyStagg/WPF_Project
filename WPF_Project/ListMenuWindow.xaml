@@ -1,0 +1,51 @@
+﻿<Window x:Class="WPF_Project.ListMenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Project"
+        mc:Ignorable="d"
+        Title="ListMenuWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nazwa" Width="250"  />
+                    <!-- tam jeszcze do każdego 
+                    DisplayMemberBinding="{Binding Name}"
+                    opis mniej wiecej na: https://www.wpf-tutorial.com/listview-control/listview-gridview-left-aligned-column-names/ -->
+                    <GridViewColumn Header="Utworzono" Width="200" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.ColumnSpan="2" Grid.Column="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button>Utwórz nową listę</Button>
+                <Button>Otwórz wybrane</Button>
+                <Button>Usuń wybrane</Button>
+            </StackPanel>
+        </Grid>
+        
+    </Grid>
+</Window>
