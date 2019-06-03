@@ -35,8 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,9 +81,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AlbumCollectionSet.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumSet.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AuthorSet.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CollectionRecordSet.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormatSet.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenreSet.cs">
+      <DependentUpon>ProjectModels.tt</DependentUpon>
     </Compile>
     <Compile Include="LibraryWindow.xaml.cs">
       <DependentUpon>LibraryWindow.xaml</DependentUpon>
@@ -90,6 +118,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectModels.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,13 +150,39 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
+    <EntityDeploy Include="ProjectModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProjectModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ProjectModels.edmx.diagram">
+      <DependentUpon>ProjectModels.edmx</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AlbumEF.edmx.sql" />
+    <Content Include="ProjectModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjectModels.edmx</DependentUpon>
+      <LastGenOutput>ProjectModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ProjectModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProjectModels.edmx</DependentUpon>
+      <LastGenOutput>ProjectModels.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

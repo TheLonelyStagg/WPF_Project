@@ -1,0 +1,437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CollectionsDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AlbumCollectionSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CollectionName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreationDate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AlbumSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ReleaseDate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImgUrl" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthorAlbum">
+          <Key>
+            <PropertyRef Name="Author_Id" />
+            <PropertyRef Name="Album_Id" />
+          </Key>
+          <Property Name="Author_Id" Type="int" Nullable="false" />
+          <Property Name="Album_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AuthorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Date" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CollectionRecordSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AlbumCollectionId" Type="int" Nullable="false" />
+          <Property Name="FormatId" Type="int" Nullable="false" />
+          <Property Name="AlbumId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormatSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FormatName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenreAlbum">
+          <Key>
+            <PropertyRef Name="Genre_Id" />
+            <PropertyRef Name="Album_Id" />
+          </Key>
+          <Property Name="Genre_Id" Type="int" Nullable="false" />
+          <Property Name="Album_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenreSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenreName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AlbumCollectionCollectionRecord">
+          <End Role="AlbumCollectionSet" Type="Self.AlbumCollectionSet" Multiplicity="1" />
+          <End Role="CollectionRecordSet" Type="Self.CollectionRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlbumCollectionSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionRecordSet">
+              <PropertyRef Name="AlbumCollectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlbumCollectionRecord">
+          <End Role="AlbumSet" Type="Self.AlbumSet" Multiplicity="1" />
+          <End Role="CollectionRecordSet" Type="Self.CollectionRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlbumSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionRecordSet">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorAlbum_Album">
+          <End Role="AlbumSet" Type="Self.AlbumSet" Multiplicity="1" />
+          <End Role="AuthorAlbum" Type="Self.AuthorAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlbumSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorAlbum">
+              <PropertyRef Name="Album_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AuthorAlbum_Author">
+          <End Role="AuthorSet" Type="Self.AuthorSet" Multiplicity="1" />
+          <End Role="AuthorAlbum" Type="Self.AuthorAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AuthorSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AuthorAlbum">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormatCollectionRecord">
+          <End Role="FormatSet" Type="Self.FormatSet" Multiplicity="1" />
+          <End Role="CollectionRecordSet" Type="Self.CollectionRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormatSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionRecordSet">
+              <PropertyRef Name="FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenreAlbum_Album">
+          <End Role="AlbumSet" Type="Self.AlbumSet" Multiplicity="1" />
+          <End Role="GenreAlbum" Type="Self.GenreAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlbumSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenreAlbum">
+              <PropertyRef Name="Album_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenreAlbum_Genre">
+          <End Role="GenreSet" Type="Self.GenreSet" Multiplicity="1" />
+          <End Role="GenreAlbum" Type="Self.GenreAlbum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenreSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GenreAlbum">
+              <PropertyRef Name="Genre_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CollectionsDatabaseModelStoreContainer">
+          <EntitySet Name="AlbumCollectionSet" EntityType="Self.AlbumCollectionSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AlbumSet" EntityType="Self.AlbumSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorAlbum" EntityType="Self.AuthorAlbum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AuthorSet" EntityType="Self.AuthorSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CollectionRecordSet" EntityType="Self.CollectionRecordSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormatSet" EntityType="Self.FormatSet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenreAlbum" EntityType="Self.GenreAlbum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenreSet" EntityType="Self.GenreSet" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AlbumCollectionCollectionRecord" Association="Self.FK_AlbumCollectionCollectionRecord">
+            <End Role="AlbumCollectionSet" EntitySet="AlbumCollectionSet" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlbumCollectionRecord" Association="Self.FK_AlbumCollectionRecord">
+            <End Role="AlbumSet" EntitySet="AlbumSet" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorAlbum_Album" Association="Self.FK_AuthorAlbum_Album">
+            <End Role="AlbumSet" EntitySet="AlbumSet" />
+            <End Role="AuthorAlbum" EntitySet="AuthorAlbum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AuthorAlbum_Author" Association="Self.FK_AuthorAlbum_Author">
+            <End Role="AuthorSet" EntitySet="AuthorSet" />
+            <End Role="AuthorAlbum" EntitySet="AuthorAlbum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormatCollectionRecord" Association="Self.FK_FormatCollectionRecord">
+            <End Role="FormatSet" EntitySet="FormatSet" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenreAlbum_Album" Association="Self.FK_GenreAlbum_Album">
+            <End Role="AlbumSet" EntitySet="AlbumSet" />
+            <End Role="GenreAlbum" EntitySet="GenreAlbum" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GenreAlbum_Genre" Association="Self.FK_GenreAlbum_Genre">
+            <End Role="GenreSet" EntitySet="GenreSet" />
+            <End Role="GenreAlbum" EntitySet="GenreAlbum" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CollectionsDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AlbumCollectionSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CollectionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreationDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CollectionRecordSet" Relationship="Self.FK_AlbumCollectionCollectionRecord" FromRole="AlbumCollectionSet" ToRole="CollectionRecordSet" />
+        </EntityType>
+        <EntityType Name="AlbumSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReleaseDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CollectionRecordSet" Relationship="Self.FK_AlbumCollectionRecord" FromRole="AlbumSet" ToRole="CollectionRecordSet" />
+          <NavigationProperty Name="AuthorSet" Relationship="Self.AuthorAlbum" FromRole="AlbumSet" ToRole="AuthorSet" />
+          <NavigationProperty Name="GenreSet" Relationship="Self.GenreAlbum" FromRole="AlbumSet" ToRole="GenreSet" />
+        </EntityType>
+        <EntityType Name="AuthorSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlbumSet" Relationship="Self.AuthorAlbum" FromRole="AuthorSet" ToRole="AlbumSet" />
+        </EntityType>
+        <EntityType Name="CollectionRecordSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AlbumCollectionId" Type="Int32" Nullable="false" />
+          <Property Name="FormatId" Type="Int32" Nullable="false" />
+          <Property Name="AlbumId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AlbumCollectionSet" Relationship="Self.FK_AlbumCollectionCollectionRecord" FromRole="CollectionRecordSet" ToRole="AlbumCollectionSet" />
+          <NavigationProperty Name="AlbumSet" Relationship="Self.FK_AlbumCollectionRecord" FromRole="CollectionRecordSet" ToRole="AlbumSet" />
+          <NavigationProperty Name="FormatSet" Relationship="Self.FK_FormatCollectionRecord" FromRole="CollectionRecordSet" ToRole="FormatSet" />
+        </EntityType>
+        <EntityType Name="FormatSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FormatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CollectionRecordSet" Relationship="Self.FK_FormatCollectionRecord" FromRole="FormatSet" ToRole="CollectionRecordSet" />
+        </EntityType>
+        <EntityType Name="GenreSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenreName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AlbumSet" Relationship="Self.GenreAlbum" FromRole="GenreSet" ToRole="AlbumSet" />
+        </EntityType>
+        <Association Name="FK_AlbumCollectionCollectionRecord">
+          <End Role="AlbumCollectionSet" Type="Self.AlbumCollectionSet" Multiplicity="1" />
+          <End Role="CollectionRecordSet" Type="Self.CollectionRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlbumCollectionSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionRecordSet">
+              <PropertyRef Name="AlbumCollectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AlbumCollectionRecord">
+          <End Role="AlbumSet" Type="Self.AlbumSet" Multiplicity="1" />
+          <End Role="CollectionRecordSet" Type="Self.CollectionRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AlbumSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionRecordSet">
+              <PropertyRef Name="AlbumId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FormatCollectionRecord">
+          <End Role="FormatSet" Type="Self.FormatSet" Multiplicity="1" />
+          <End Role="CollectionRecordSet" Type="Self.CollectionRecordSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormatSet">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CollectionRecordSet">
+              <PropertyRef Name="FormatId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AuthorAlbum">
+          <End Role="AlbumSet" Type="Self.AlbumSet" Multiplicity="*" />
+          <End Role="AuthorSet" Type="Self.AuthorSet" Multiplicity="*" />
+        </Association>
+        <Association Name="GenreAlbum">
+          <End Role="AlbumSet" Type="Self.AlbumSet" Multiplicity="*" />
+          <End Role="GenreSet" Type="Self.GenreSet" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CollectionsDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlbumCollectionSet" EntityType="Self.AlbumCollectionSet" />
+          <EntitySet Name="AlbumSet" EntityType="Self.AlbumSet" />
+          <EntitySet Name="AuthorSet" EntityType="Self.AuthorSet" />
+          <EntitySet Name="CollectionRecordSet" EntityType="Self.CollectionRecordSet" />
+          <EntitySet Name="FormatSet" EntityType="Self.FormatSet" />
+          <EntitySet Name="GenreSet" EntityType="Self.GenreSet" />
+          <AssociationSet Name="FK_AlbumCollectionCollectionRecord" Association="Self.FK_AlbumCollectionCollectionRecord">
+            <End Role="AlbumCollectionSet" EntitySet="AlbumCollectionSet" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AlbumCollectionRecord" Association="Self.FK_AlbumCollectionRecord">
+            <End Role="AlbumSet" EntitySet="AlbumSet" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FormatCollectionRecord" Association="Self.FK_FormatCollectionRecord">
+            <End Role="FormatSet" EntitySet="FormatSet" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="AuthorAlbum" Association="Self.AuthorAlbum">
+            <End Role="AlbumSet" EntitySet="AlbumSet" />
+            <End Role="AuthorSet" EntitySet="AuthorSet" />
+          </AssociationSet>
+          <AssociationSet Name="GenreAlbum" Association="Self.GenreAlbum">
+            <End Role="AlbumSet" EntitySet="AlbumSet" />
+            <End Role="GenreSet" EntitySet="GenreSet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CollectionsDatabaseModelStoreContainer" CdmEntityContainer="CollectionsDatabaseEntities">
+          <EntitySetMapping Name="AlbumCollectionSet">
+            <EntityTypeMapping TypeName="CollectionsDatabaseModel.AlbumCollectionSet">
+              <MappingFragment StoreEntitySet="AlbumCollectionSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CollectionName" ColumnName="CollectionName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AlbumSet">
+            <EntityTypeMapping TypeName="CollectionsDatabaseModel.AlbumSet">
+              <MappingFragment StoreEntitySet="AlbumSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AuthorSet">
+            <EntityTypeMapping TypeName="CollectionsDatabaseModel.AuthorSet">
+              <MappingFragment StoreEntitySet="AuthorSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CollectionRecordSet">
+            <EntityTypeMapping TypeName="CollectionsDatabaseModel.CollectionRecordSet">
+              <MappingFragment StoreEntitySet="CollectionRecordSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AlbumCollectionId" ColumnName="AlbumCollectionId" />
+                <ScalarProperty Name="FormatId" ColumnName="FormatId" />
+                <ScalarProperty Name="AlbumId" ColumnName="AlbumId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormatSet">
+            <EntityTypeMapping TypeName="CollectionsDatabaseModel.FormatSet">
+              <MappingFragment StoreEntitySet="FormatSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FormatName" ColumnName="FormatName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenreSet">
+            <EntityTypeMapping TypeName="CollectionsDatabaseModel.GenreSet">
+              <MappingFragment StoreEntitySet="GenreSet">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="GenreName" ColumnName="GenreName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AuthorAlbum" TypeName="CollectionsDatabaseModel.AuthorAlbum" StoreEntitySet="AuthorAlbum">
+            <EndProperty Name="AlbumSet">
+              <ScalarProperty Name="Id" ColumnName="Album_Id" />
+            </EndProperty>
+            <EndProperty Name="AuthorSet">
+              <ScalarProperty Name="Id" ColumnName="Author_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="GenreAlbum" TypeName="CollectionsDatabaseModel.GenreAlbum" StoreEntitySet="GenreAlbum">
+            <EndProperty Name="AlbumSet">
+              <ScalarProperty Name="Id" ColumnName="Album_Id" />
+            </EndProperty>
+            <EndProperty Name="GenreSet">
+              <ScalarProperty Name="Id" ColumnName="Genre_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

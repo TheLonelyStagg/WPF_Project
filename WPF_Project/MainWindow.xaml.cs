@@ -23,6 +23,12 @@ namespace WPF_Project
         public MainWindow()
         {
             InitializeComponent();
+            var db = new AlbumDatabaseEntities();
+            AutorSet autor = new AutorSet();
+            autor.Imie = "Ada";
+
+            db.AutorSet.Add(autor);
+            db.SaveChanges();
         }
     }
 }
