@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,15 @@ namespace WPF_Project
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            using (var scope = container.Get.BeginLifetimeScope())
+            {
+                MainWindow mainWindow = container.Get.Resolve<MainWindow>();
+                mainWindow.Show();
+            }
+        }
+
+        private readonly Container container = new Container();
     }
 }
