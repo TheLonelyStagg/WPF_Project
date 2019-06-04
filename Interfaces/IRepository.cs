@@ -14,20 +14,20 @@ namespace Interfaces
         /// <param name="count">Liczba elementów pobieranych</param>
         /// <param name="skip">Pomija podaną liczbę elementów i doczytuje kolejne</param>
         /// <returns>zwraca wyszukane rekordy</returns>
-        Task<IEnumerable<TEntity>> Get(int count, int skip);
+        IEnumerable<TEntity> Get(int count, int skip);
 
         /// <summary>
         /// Pobranie listy obiektów z repozytorium
         /// </summary>
         /// <returns>zwraca wyszukane rekordy</returns>
-        Task<IEnumerable<TEntity>> Get();
+        IEnumerable<TEntity> Get();
 
         /// <summary>
         /// Pobranie jednego obiektu z repozytorium
         /// </summary>
         /// <param name="id">id poszukiwanego obiektu</param>
         /// <returns>zwraca wyszukany rekord</returns>
-        Task<TEntity> Get(int id);
+        TEntity Get(int id);
 
         /// <summary>
         /// Aktualizacja obiektu w repozytorium
@@ -35,20 +35,20 @@ namespace Interfaces
         /// <param name="o">nowy obiekt ktory ma zastapic obecny</param>
         /// <param name="in">id obiektu modyfikowanego</param>
         /// <returns></returns>
-        Task<TEntity> Update(TEntity o, int id);
+        TEntity Update(TEntity o, int id);
 
         /// <summary>
         /// Umieszczenie nowego obiektu w repozytorium
         /// </summary>
         /// <param name="o">obiekt ktory ma zostac zapisany do bazy</param>
         /// <returns></returns>
-        Task<TEntity> Insert(TEntity o);
+        TEntity Insert(TEntity o);
 
         /// <summary>
         /// Usuniecie obiektu z repozytorium
         /// </summary>
         /// <param name="o">id poszukiwanego obiektu</param>
         /// <returns></returns>
-        Task<TEntity> Delete(TEntity o);
+        TEntity Delete(TEntity o);
     }
 }

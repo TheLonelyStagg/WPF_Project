@@ -11,33 +11,33 @@ namespace Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        public async Task<TEntity> Delete(TEntity o)
+        public TEntity Delete(TEntity o)
         {
             db.Set<TEntity>().Remove(o);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return o;
         }
 
-        public async Task<IEnumerable<TEntity>> Get(int count, int skip) => await db.Set<TEntity>().Skip(skip).Take(count).ToListAsync();
+        public IEnumerable<TEntity> Get(int count, int skip) => db.Set<TEntity>().Skip(skip).Take(count).ToList();
 
-        public async Task<IEnumerable<TEntity>> Get() => await db.Set<TEntity>().ToListAsync();
+        public IEnumerable<TEntity> Get() => db.Set<TEntity>().ToList();
 
-        public async Task<TEntity> Get(int id) => await db.Set<TEntity>().FindAsync(id);
+        public TEntity Get(int id) => db.Set<TEntity>().Find(id);
 
-        public async Task<TEntity> Insert(TEntity o)
+        public TEntity Insert(TEntity o)
         {
             db.Set<TEntity>().Add(o);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return o;
         }
 
-        public async Task<TEntity> Update(TEntity o, int id)
+        public TEntity Update(TEntity o, int id)
         {
-            TEntity entity = await db.Set<TEntity>().FindAsync(id);
+            TEntity entity = db.Set<TEntity>().Find(id);
             if (entity != null)
             {
                 db.Entry(entity).CurrentValues.SetValues(o);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
             return o;
         }

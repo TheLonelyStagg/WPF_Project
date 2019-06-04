@@ -26,13 +26,15 @@ namespace WPF_Project
         public MainWindow(IRepository<AlbumSet> album)
         {
             InitializeComponent();
-
+            Test.Content = album.Get().FirstOrDefault().Name;
+            /*
             Loaded += MainWindow_Loaded;
         }
-
+        
+        
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-           windowScreen.NavigationService.Navigate(new StartWindow());
+           windowScreen.NavigationService.Navigate(new StartWindow());*/
         }
     }
 }
