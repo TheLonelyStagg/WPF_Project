@@ -12,25 +12,27 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_Project.Widoki;
 
-namespace WPF_Project
+namespace WPF_Project.Widoki
 {
     /// <summary>
-    /// Logika interakcji dla klasy MainWindow.xaml
+    /// Logika interakcji dla klasy StartWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StartWindow : Page
     {
-        public MainWindow()
+        public StartWindow()
         {
             InitializeComponent();
-
-            Loaded += MainWindow_Loaded;
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        private void LibraryButton_OnClick(object sender, RoutedEventArgs e)
         {
-           windowScreen.NavigationService.Navigate(new StartWindow());
+            this.NavigationService.Navigate(new LibraryPage());
+        }
+
+        private void ListMenuButton_OnClcik(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new ListMenuPage());
         }
     }
 }

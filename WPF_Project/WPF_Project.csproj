@@ -65,15 +65,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="LibraryWindow.xaml">
+    <Compile Include="Widoki\LibraryPage.xaml.cs">
+      <DependentUpon>LibraryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\ListMenuPage.xaml.cs">
+      <DependentUpon>ListMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\ListPage.xaml.cs">
+      <DependentUpon>ListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Widoki\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="StareOkna\LibraryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListMenuWindow.xaml">
+    <Page Include="StareOkna\ListMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ListWindow.xaml">
+    <Page Include="StareOkna\ListWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,19 +115,35 @@
     <Compile Include="GenreSet.cs">
       <DependentUpon>ProjectModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="LibraryWindow.xaml.cs">
+    <Compile Include="StareOkna\LibraryWindow.xaml.cs">
       <DependentUpon>LibraryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListMenuWindow.xaml.cs">
+    <Compile Include="StareOkna\ListMenuWindow.xaml.cs">
       <DependentUpon>ListMenuWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ListWindow.xaml.cs">
+    <Compile Include="StareOkna\ListWindow.xaml.cs">
       <DependentUpon>ListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Widoki\LibraryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\ListMenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\ListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Widoki\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ProjectModels.Context.cs">

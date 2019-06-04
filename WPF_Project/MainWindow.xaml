@@ -6,39 +6,5 @@
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Row="2" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-
-            <Label Grid.Row="0">Tytuł programu / Witaj itd.</Label>
-            <Button Grid.Row="1">Biblioteka</Button>
-            <Button Grid.Row="2">Listy kolekcji</Button>
-        </Grid>
-
-        <Grid Grid.Row="0" Grid.ColumnSpan="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Grid.Column="1">Zmień styl</Button>
-        </Grid>
-    </Grid>
+    <Frame x:Name="windowScreen"></Frame>
 </Window>
