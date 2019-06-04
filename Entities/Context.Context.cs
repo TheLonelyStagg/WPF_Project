@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Project
+namespace Entities
 {
     using System;
     using System.Data.Entity;
@@ -25,11 +25,11 @@ namespace WPF_Project
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AlbumCollectionSet> AlbumCollectionSet { get; set; }
-        public virtual DbSet<AlbumSet> AlbumSet { get; set; }
-        public virtual DbSet<AuthorSet> AuthorSet { get; set; }
-        public virtual DbSet<CollectionRecordSet> CollectionRecordSet { get; set; }
-        public virtual DbSet<FormatSet> FormatSet { get; set; }
-        public virtual DbSet<GenreSet> GenreSet { get; set; }
+        public virtual DbSet<AlbumCollectionSet> AlbumCollectionSets { get; set; }
+        public virtual DbSet<AlbumSet> AlbumSets { get; set; }
+        public virtual DbSet<AuthorSet> AuthorSets { get; set; }
+        public virtual DbSet<CollectionRecordSet> CollectionRecordSets { get; set; }
+        public virtual DbSet<FormatSet> FormatSets { get; set; }
+        public virtual DbSet<GenreSet> GenreSets { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CollectionsDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AlbumCollectionSet">
           <Key>
             <PropertyRef Name="Id" />
@@ -156,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CollectionsDatabaseModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AlbumCollectionSet" EntityType="Self.AlbumCollectionSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AlbumSet" EntityType="Self.AlbumSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AuthorAlbum" EntityType="Self.AuthorAlbum" Schema="dbo" store:Type="Tables" />
@@ -198,7 +198,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CollectionsDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="AlbumCollectionSet">
           <Key>
             <PropertyRef Name="Id" />
@@ -208,7 +208,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="CreationDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CollectionRecordSet" Relationship="Self.FK_AlbumCollectionCollectionRecord" FromRole="AlbumCollectionSet" ToRole="CollectionRecordSet" />
+          <NavigationProperty Name="CollectionRecordSets" Relationship="Self.FK_AlbumCollectionCollectionRecord" FromRole="AlbumCollectionSet" ToRole="CollectionRecordSet" />
         </EntityType>
         <EntityType Name="AlbumSet">
           <Key>
@@ -219,9 +219,9 @@
           <Property Name="ReleaseDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ImgUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CollectionRecordSet" Relationship="Self.FK_AlbumCollectionRecord" FromRole="AlbumSet" ToRole="CollectionRecordSet" />
-          <NavigationProperty Name="AuthorSet" Relationship="Self.AuthorAlbum" FromRole="AlbumSet" ToRole="AuthorSet" />
-          <NavigationProperty Name="GenreSet" Relationship="Self.GenreAlbum" FromRole="AlbumSet" ToRole="GenreSet" />
+          <NavigationProperty Name="CollectionRecordSets" Relationship="Self.FK_AlbumCollectionRecord" FromRole="AlbumSet" ToRole="CollectionRecordSet" />
+          <NavigationProperty Name="AuthorSets" Relationship="Self.AuthorAlbum" FromRole="AlbumSet" ToRole="AuthorSet" />
+          <NavigationProperty Name="GenreSets" Relationship="Self.GenreAlbum" FromRole="AlbumSet" ToRole="GenreSet" />
         </EntityType>
         <EntityType Name="AuthorSet">
           <Key>
@@ -230,7 +230,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AlbumSet" Relationship="Self.AuthorAlbum" FromRole="AuthorSet" ToRole="AlbumSet" />
+          <NavigationProperty Name="AlbumSets" Relationship="Self.AuthorAlbum" FromRole="AuthorSet" ToRole="AlbumSet" />
         </EntityType>
         <EntityType Name="CollectionRecordSet">
           <Key>
@@ -250,7 +250,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FormatName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CollectionRecordSet" Relationship="Self.FK_FormatCollectionRecord" FromRole="FormatSet" ToRole="CollectionRecordSet" />
+          <NavigationProperty Name="CollectionRecordSets" Relationship="Self.FK_FormatCollectionRecord" FromRole="FormatSet" ToRole="CollectionRecordSet" />
         </EntityType>
         <EntityType Name="GenreSet">
           <Key>
@@ -258,7 +258,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GenreName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AlbumSet" Relationship="Self.GenreAlbum" FromRole="GenreSet" ToRole="AlbumSet" />
+          <NavigationProperty Name="AlbumSets" Relationship="Self.GenreAlbum" FromRole="GenreSet" ToRole="AlbumSet" />
         </EntityType>
         <Association Name="FK_AlbumCollectionCollectionRecord">
           <End Role="AlbumCollectionSet" Type="Self.AlbumCollectionSet" Multiplicity="1" />
@@ -305,31 +305,31 @@
           <End Role="GenreSet" Type="Self.GenreSet" Multiplicity="*" />
         </Association>
         <EntityContainer Name="CollectionsDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AlbumCollectionSet" EntityType="Self.AlbumCollectionSet" />
-          <EntitySet Name="AlbumSet" EntityType="Self.AlbumSet" />
-          <EntitySet Name="AuthorSet" EntityType="Self.AuthorSet" />
-          <EntitySet Name="CollectionRecordSet" EntityType="Self.CollectionRecordSet" />
-          <EntitySet Name="FormatSet" EntityType="Self.FormatSet" />
-          <EntitySet Name="GenreSet" EntityType="Self.GenreSet" />
+          <EntitySet Name="AlbumCollectionSets" EntityType="Self.AlbumCollectionSet" />
+          <EntitySet Name="AlbumSets" EntityType="Self.AlbumSet" />
+          <EntitySet Name="AuthorSets" EntityType="Self.AuthorSet" />
+          <EntitySet Name="CollectionRecordSets" EntityType="Self.CollectionRecordSet" />
+          <EntitySet Name="FormatSets" EntityType="Self.FormatSet" />
+          <EntitySet Name="GenreSets" EntityType="Self.GenreSet" />
           <AssociationSet Name="FK_AlbumCollectionCollectionRecord" Association="Self.FK_AlbumCollectionCollectionRecord">
-            <End Role="AlbumCollectionSet" EntitySet="AlbumCollectionSet" />
-            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+            <End Role="AlbumCollectionSet" EntitySet="AlbumCollectionSets" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSets" />
           </AssociationSet>
           <AssociationSet Name="FK_AlbumCollectionRecord" Association="Self.FK_AlbumCollectionRecord">
-            <End Role="AlbumSet" EntitySet="AlbumSet" />
-            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+            <End Role="AlbumSet" EntitySet="AlbumSets" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSets" />
           </AssociationSet>
           <AssociationSet Name="FK_FormatCollectionRecord" Association="Self.FK_FormatCollectionRecord">
-            <End Role="FormatSet" EntitySet="FormatSet" />
-            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSet" />
+            <End Role="FormatSet" EntitySet="FormatSets" />
+            <End Role="CollectionRecordSet" EntitySet="CollectionRecordSets" />
           </AssociationSet>
           <AssociationSet Name="AuthorAlbum" Association="Self.AuthorAlbum">
-            <End Role="AlbumSet" EntitySet="AlbumSet" />
-            <End Role="AuthorSet" EntitySet="AuthorSet" />
+            <End Role="AlbumSet" EntitySet="AlbumSets" />
+            <End Role="AuthorSet" EntitySet="AuthorSets" />
           </AssociationSet>
           <AssociationSet Name="GenreAlbum" Association="Self.GenreAlbum">
-            <End Role="AlbumSet" EntitySet="AlbumSet" />
-            <End Role="GenreSet" EntitySet="GenreSet" />
+            <End Role="AlbumSet" EntitySet="AlbumSets" />
+            <End Role="GenreSet" EntitySet="GenreSets" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -337,9 +337,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CollectionsDatabaseModelStoreContainer" CdmEntityContainer="CollectionsDatabaseEntities">
-          <EntitySetMapping Name="AlbumCollectionSet">
-            <EntityTypeMapping TypeName="CollectionsDatabaseModel.AlbumCollectionSet">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="CollectionsDatabaseEntities">
+          <EntitySetMapping Name="AlbumCollectionSets">
+            <EntityTypeMapping TypeName="Model.AlbumCollectionSet">
               <MappingFragment StoreEntitySet="AlbumCollectionSet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CollectionName" ColumnName="CollectionName" />
@@ -349,8 +349,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AlbumSet">
-            <EntityTypeMapping TypeName="CollectionsDatabaseModel.AlbumSet">
+          <EntitySetMapping Name="AlbumSets">
+            <EntityTypeMapping TypeName="Model.AlbumSet">
               <MappingFragment StoreEntitySet="AlbumSet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -360,8 +360,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AuthorSet">
-            <EntityTypeMapping TypeName="CollectionsDatabaseModel.AuthorSet">
+          <EntitySetMapping Name="AuthorSets">
+            <EntityTypeMapping TypeName="Model.AuthorSet">
               <MappingFragment StoreEntitySet="AuthorSet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -369,8 +369,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CollectionRecordSet">
-            <EntityTypeMapping TypeName="CollectionsDatabaseModel.CollectionRecordSet">
+          <EntitySetMapping Name="CollectionRecordSets">
+            <EntityTypeMapping TypeName="Model.CollectionRecordSet">
               <MappingFragment StoreEntitySet="CollectionRecordSet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="AlbumCollectionId" ColumnName="AlbumCollectionId" />
@@ -379,23 +379,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FormatSet">
-            <EntityTypeMapping TypeName="CollectionsDatabaseModel.FormatSet">
+          <EntitySetMapping Name="FormatSets">
+            <EntityTypeMapping TypeName="Model.FormatSet">
               <MappingFragment StoreEntitySet="FormatSet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="FormatName" ColumnName="FormatName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GenreSet">
-            <EntityTypeMapping TypeName="CollectionsDatabaseModel.GenreSet">
+          <EntitySetMapping Name="GenreSets">
+            <EntityTypeMapping TypeName="Model.GenreSet">
               <MappingFragment StoreEntitySet="GenreSet">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="GenreName" ColumnName="GenreName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AuthorAlbum" TypeName="CollectionsDatabaseModel.AuthorAlbum" StoreEntitySet="AuthorAlbum">
+          <AssociationSetMapping Name="AuthorAlbum" TypeName="Model.AuthorAlbum" StoreEntitySet="AuthorAlbum">
             <EndProperty Name="AlbumSet">
               <ScalarProperty Name="Id" ColumnName="Album_Id" />
             </EndProperty>
@@ -403,7 +403,7 @@
               <ScalarProperty Name="Id" ColumnName="Author_Id" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="GenreAlbum" TypeName="CollectionsDatabaseModel.GenreAlbum" StoreEntitySet="GenreAlbum">
+          <AssociationSetMapping Name="GenreAlbum" TypeName="Model.GenreAlbum" StoreEntitySet="GenreAlbum">
             <EndProperty Name="AlbumSet">
               <ScalarProperty Name="Id" ColumnName="Album_Id" />
             </EndProperty>
@@ -425,7 +425,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

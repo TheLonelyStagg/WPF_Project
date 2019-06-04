@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Project
+namespace Entities
 {
     using System;
     using System.Collections.Generic;

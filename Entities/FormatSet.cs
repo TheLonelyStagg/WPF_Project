@@ -7,23 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Project
+namespace Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class GenreSet
+    public partial class FormatSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public GenreSet()
+        public FormatSet()
         {
-            this.AlbumSet = new HashSet<AlbumSet>();
+            this.CollectionRecordSets = new HashSet<CollectionRecordSet>();
         }
     
         public int Id { get; set; }
-        public string GenreName { get; set; }
+        public string FormatName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AlbumSet> AlbumSet { get; set; }
+        public virtual ICollection<CollectionRecordSet> CollectionRecordSets { get; set; }
     }
 }

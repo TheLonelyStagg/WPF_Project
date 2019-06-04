@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using Entities;
+using Repositories;
+using Interfaces;
 
 namespace WPF_Project
 {
@@ -19,6 +22,7 @@ namespace WPF_Project
         {
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<CollectionsDatabaseEntities>().InstancePerLifetimeScope();
+            builder.RegisterType<AlbumRepository>().As<IRepository<AlbumSet>>().InstancePerLifetimeScope();
         }
 
         #region private fields

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Project.Widoki;
+using Interfaces;
+using Entities;
 
 namespace WPF_Project
 {
@@ -21,7 +23,7 @@ namespace WPF_Project
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(IRepository<AlbumSet> album)
         {
             InitializeComponent();
 
