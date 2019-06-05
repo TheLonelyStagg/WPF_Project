@@ -6,5 +6,8 @@
         xmlns:local="clr-namespace:WPF_Project"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Label Name="Test" Content="Label" HorizontalAlignment="Left" Margin="169,135,0,0" VerticalAlignment="Top"/>
+    <Grid>
+    <Label Content="Label" HorizontalAlignment="Left" Margin="57,53,0,0" VerticalAlignment="Top" Name="Test"/>
+    <Button Width="100" Height="100" Name="aaa" Content="OK" Click="Aaa_Click" />
+    </Grid>
 </Window>

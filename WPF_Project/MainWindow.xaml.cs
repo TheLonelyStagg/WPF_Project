@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WPF_Project.Widoki;
 using Interfaces;
 using Entities;
+using Repositories;
 
 namespace WPF_Project
 {
@@ -26,15 +27,24 @@ namespace WPF_Project
         public MainWindow(IRepository<AlbumSet> album)
         {
             InitializeComponent();
-            Test.Content = album.Get().FirstOrDefault().Name;
+
+            _album = album;
+            //Test.Content = album.Get().Result.FirstOrDefault().Name;
             /*
+
             Loaded += MainWindow_Loaded;
         }
-        
-        
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
            windowScreen.NavigationService.Navigate(new StartWindow());*/
         }
+
+        private void Aaa_Click(object sender, RoutedEventArgs e)
+        {
+            Test.Content = _album.Get().FirstOrDefault().Name;
+        }
+
+        private readonly IRepository<AlbumSet> _album;
     }
 }

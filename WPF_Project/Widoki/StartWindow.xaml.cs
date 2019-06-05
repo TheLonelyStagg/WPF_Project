@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Entities;
+using Interfaces;
+using Repositories;
 
 namespace WPF_Project.Widoki
 {
@@ -20,7 +23,7 @@ namespace WPF_Project.Widoki
     /// </summary>
     public partial class StartWindow : Page
     {
-        public StartWindow()
+        public StartWindow(IRepository<AlbumSet> album)
         {
             InitializeComponent();
         }
