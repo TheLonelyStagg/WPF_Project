@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Project.Widoki;
+using Interfaces;
+using Entities;
+using Repositories;
 
 namespace WPF_Project
 {
@@ -24,7 +27,6 @@ namespace WPF_Project
         public MainWindow()
         {
             InitializeComponent();
-
             Loaded += MainWindow_Loaded;
         }
 
@@ -32,5 +34,6 @@ namespace WPF_Project
         {
            windowScreen.NavigationService.Navigate(new StartWindow());
         }
+
     }
 }

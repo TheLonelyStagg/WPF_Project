@@ -22,7 +22,7 @@
                 <MenuItem Header="Zamknij"/>
             </MenuItem>
             <MenuItem Header="Autor">
-                <MenuItem Header="Dodaj"/>
+                <MenuItem Header="Dodaj" Name="CreateAuthor_MenuItem" Click="CreateAuthor_MenuItem_Click"/>
                 <MenuItem Header="Edytuj"/>
                 <MenuItem Header="Usuń"/>
                 <MenuItem Header="Usuń wszystkie dzieła"/>

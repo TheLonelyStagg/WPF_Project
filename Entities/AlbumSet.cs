@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Project
+namespace Entities
 {
     using System;
     using System.Collections.Generic;
@@ -17,9 +17,9 @@ namespace WPF_Project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AlbumSet()
         {
-            this.CollectionRecordSet = new HashSet<CollectionRecordSet>();
-            this.AuthorSet = new HashSet<AuthorSet>();
-            this.GenreSet = new HashSet<GenreSet>();
+            this.CollectionRecordSets = new HashSet<CollectionRecordSet>();
+            this.AuthorSets = new HashSet<AuthorSet>();
+            this.GenreSets = new HashSet<GenreSet>();
         }
     
         public int Id { get; set; }
@@ -29,10 +29,10 @@ namespace WPF_Project
         public string ImgUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CollectionRecordSet> CollectionRecordSet { get; set; }
+        public virtual ICollection<CollectionRecordSet> CollectionRecordSets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AuthorSet> AuthorSet { get; set; }
+        public virtual ICollection<AuthorSet> AuthorSets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GenreSet> GenreSet { get; set; }
+        public virtual ICollection<GenreSet> GenreSets { get; set; }
     }
 }

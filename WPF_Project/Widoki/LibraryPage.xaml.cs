@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Interfaces;
+using Entities;
+using Repositories;
+using System.Diagnostics;
+using WPF_Project.OknaDodwania;
 
 namespace WPF_Project.Widoki
 {
@@ -23,6 +28,12 @@ namespace WPF_Project.Widoki
         public LibraryPage()
         {
             InitializeComponent();
+        }
+
+        private void CreateAuthor_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(1);
+            creationWindow.ShowDialog();
         }
     }
 }

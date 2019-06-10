@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WPF_Project</RootNamespace>
     <AssemblyName>WPF_Project</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -65,6 +69,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Container.cs" />
+    <Compile Include="OknaDodwania\CreateWindow.xaml.cs">
+      <DependentUpon>CreateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml.cs">
+      <DependentUpon>CreateAuthorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RepositoryWorkUnit.cs" />
     <Compile Include="Widoki\LibraryPage.xaml.cs">
       <DependentUpon>LibraryPage.xaml</DependentUpon>
     </Compile>
@@ -77,6 +89,14 @@
     <Compile Include="Widoki\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="OknaDodwania\CreateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StareOkna\LibraryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,27 +113,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AlbumCollectionSet.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AlbumSet.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="AuthorSet.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CollectionRecordSet.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FormatSet.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GenreSet.cs">
-      <DependentUpon>ProjectModels.tt</DependentUpon>
     </Compile>
     <Compile Include="StareOkna\LibraryWindow.xaml.cs">
       <DependentUpon>LibraryWindow.xaml</DependentUpon>
@@ -146,21 +148,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProjectModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProjectModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -178,13 +165,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
-    <EntityDeploy Include="ProjectModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ProjectModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="ProjectModels.edmx.diagram">
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -201,16 +183,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AlbumEF.edmx.sql" />
-    <Content Include="ProjectModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
-      <LastGenOutput>ProjectModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="ProjectModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ProjectModels.edmx</DependentUpon>
-      <LastGenOutput>ProjectModels.cs</LastGenOutput>
-    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{452fcaed-2a02-4b0f-a7f3-60d122e7d7f3}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{2752165f-3690-4a98-94ef-3bfc75626071}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{63dce548-ccba-4c1f-a41b-fd381f944ea0}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

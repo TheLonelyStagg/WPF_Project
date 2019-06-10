@@ -7,26 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPF_Project
+namespace Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class AlbumCollectionSet
+    public partial class GenreSet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public AlbumCollectionSet()
+        public GenreSet()
         {
-            this.CollectionRecordSet = new HashSet<CollectionRecordSet>();
+            this.AlbumSets = new HashSet<AlbumSet>();
         }
     
         public int Id { get; set; }
-        public string CollectionName { get; set; }
-        public string Description { get; set; }
-        public string CreationDate { get; set; }
-        public string FileName { get; set; }
+        public string GenreName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CollectionRecordSet> CollectionRecordSet { get; set; }
+        public virtual ICollection<AlbumSet> AlbumSets { get; set; }
     }
 }
