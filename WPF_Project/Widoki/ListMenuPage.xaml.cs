@@ -23,6 +23,7 @@ namespace WPF_Project.Widoki
         public ListMenuPage()
         {
             InitializeComponent();
+
         }
     }
 }

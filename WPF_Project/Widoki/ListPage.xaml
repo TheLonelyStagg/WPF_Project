@@ -19,12 +19,12 @@
             <MenuItem Header="Lista">
                 <MenuItem Header="Otwórz nową"/>
                 <MenuItem Header="Stwórz nową"/>
-                <MenuItem Header="Zapisz"/>
-                <MenuItem Header="Usuń aktualną"/>
+                <MenuItem Header="Zapisz" Click="SaveList_Click"/>
+                <MenuItem Header="Usuń aktualną" Click="DeleteList_Click"/>
                 <MenuItem Header="Zmień nazwę"/>
-                <MenuItem Header="Zamknij otwartą"/>
+                <MenuItem Header="Zamknij otwartą" Click="CloseList_Click"/>
             </MenuItem>
-            <MenuItem Header="Pozycja">
+            <MenuItem Header="Pozycja" Name="menuItem_position">
                 <MenuItem Header="Otwórz w bibliotece"/>
                 <MenuItem Header="Dodaj"/>
                 <MenuItem Header="Edytuj"/>
@@ -37,7 +37,7 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Grid.Row="1" Margin="0 5 0 0">
+        <TabControl Grid.Row="1" Margin="0 5 0 0" Name="tabControl">
             <TabItem Header="Lista1">
                 <!-- info o tabsach https://www.wpf-tutorial.com/tabcontrol/using-the-tabcontrol/ -->
                 <ListView>
