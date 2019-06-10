@@ -23,7 +23,7 @@ namespace WPF_Project.Widoki
     /// </summary>
     public partial class StartWindow : Page
     {
-        public StartWindow(IRepository<AlbumSet> album)
+        public StartWindow()
         {
             InitializeComponent();
         }

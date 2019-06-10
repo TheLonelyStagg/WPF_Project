@@ -70,6 +70,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Container.cs" />
+    <Compile Include="OknaDodwania\CreateWindow.xaml.cs">
+      <DependentUpon>CreateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml.cs">
+      <DependentUpon>CreateAuthorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RepositoryWorkUnit.cs" />
     <Compile Include="Widoki\LibraryPage.xaml.cs">
       <DependentUpon>LibraryPage.xaml</DependentUpon>
     </Compile>
@@ -82,6 +89,14 @@
     <Compile Include="Widoki\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="OknaDodwania\CreateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StareOkna\LibraryWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
