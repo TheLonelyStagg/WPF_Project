@@ -17,6 +17,7 @@ using Entities;
 using Repositories;
 using System.Diagnostics;
 using WPF_Project.OknaDodwania;
+using WPF_Project.OknaList;
 
 namespace WPF_Project.Widoki
 {
@@ -34,6 +35,33 @@ namespace WPF_Project.Widoki
         {
             CreateWindow creationWindow = new CreateWindow(1);
             creationWindow.ShowDialog();
+        }
+
+        private void EditAuthor_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //na razie bierzemy jakikolwiek obiekt z bazy
+            //trzeba będzie zmienić to na wybrany z listy
+            var author = RepositoryWorkUnit.Instance.Authors.Get().FirstOrDefault();
+            CreateWindow creationWindow = new CreateWindow(1, author);
+            creationWindow.ShowDialog();
+        }
+
+        private void AuthorHeader_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntitiesListWindow listWindow = new EntitiesListWindow(1);
+            listWindow.ShowDialog();
+        }
+
+        private void FormatHeader_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntitiesListWindow listWindow = new EntitiesListWindow(2);
+            listWindow.ShowDialog();
+        }
+
+        private void GenreHeader_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntitiesListWindow listWindow = new EntitiesListWindow(3);
+            listWindow.ShowDialog();
         }
     }
 }

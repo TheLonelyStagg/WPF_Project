@@ -21,16 +21,16 @@
                 <MenuItem Header="Rozwiń wszystkie"/>
                 <MenuItem Header="Zamknij"/>
             </MenuItem>
-            <MenuItem Header="Autor">
-                <MenuItem Header="Dodaj" Name="CreateAuthor_MenuItem" Click="CreateAuthor_MenuItem_Click"/>
-                <MenuItem Header="Edytuj"/>
-                <MenuItem Header="Usuń"/>
-                <MenuItem Header="Usuń wszystkie dzieła"/>
-            </MenuItem>
             <MenuItem Header="Album">
-                <MenuItem Header="Dodaj"/>
-                <MenuItem Header="Edytuj"/>
+                <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" />
+                <MenuItem Header="Edytuj" Name="EditAlbum_MenuItem"/>
                 <MenuItem Header="Usuń"/>
+            </MenuItem>
+            <MenuItem Header="Autor" Name="AuthorHeader_MenuItem" Click="AuthorHeader_MenuItem_Click">
+            </MenuItem>
+            <MenuItem Header="Wydanie" Name="FormatHeader_MenuItem" Click="FormatHeader_MenuItem_Click">
+            </MenuItem>
+            <MenuItem Header="Gatunek" Name="GenreHeader_MenuItem" Click="GenreHeader_MenuItem_Click">
             </MenuItem>
             <MenuItem Header="Szukaj">
             </MenuItem>
