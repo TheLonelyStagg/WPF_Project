@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_Project.OknaDodwania.WidokiDodawania;
+using Entities;
 
 namespace WPF_Project.OknaDodwania
 {
@@ -20,25 +21,84 @@ namespace WPF_Project.OknaDodwania
     /// </summary>
     public partial class CreateWindow : Window
     {
-        public CreateWindow(int widok)
+        private Object _entity;
+
+        public CreateWindow(int widok, object entity = null)
         {
             InitializeComponent();
-
+            _entity = entity;
             switch (widok)
             {
+                //tworzenie autorów
                 case 1:
                     Loaded += CreateUser_Page;
+                    break;
+                //tworzenie albumów
+                case 2:
+                    break;
+                //tworzenie wydań
+                case 3:
+                    Loaded += CreateFormat_Page;
+                    break;
+                //tworzenie gatunków
+                case 4:
+                    Loaded += CreateGenre_Page;
                     break;
 
             }
 
         }
 
+
         private void CreateUser_Page(object sender, RoutedEventArgs e)
         {
             //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
             //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
-            windowScreen.NavigationService.Navigate(new CreateAuthorPage(this));
+
+            //obiekt idzie do edycji
+            if(_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateAuthorPage(this,(AuthorSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateAuthorPage(this));
+            }          
+        }
+
+        private void CreateFormat_Page(object sender, RoutedEventArgs e)
+        {
+            //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
+            //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
+
+            //obiekt idzie do edycji
+            if (_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateFormatPage(this, (FormatSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateFormatPage(this));
+            }
+        }
+
+        private void CreateGenre_Page(object sender, RoutedEventArgs e)
+        {
+            //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
+            //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
+
+            //obiekt idzie do edycji
+            if (_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateGenrePage(this, (GenreSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateGenrePage(this));
+            }
         }
     }
 }

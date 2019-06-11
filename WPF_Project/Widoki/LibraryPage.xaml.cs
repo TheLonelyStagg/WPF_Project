@@ -17,6 +17,7 @@ using Entities;
 using Repositories;
 using System.Diagnostics;
 using WPF_Project.OknaDodwania;
+using WPF_Project.OknaList;
 
 namespace WPF_Project.Widoki
 {
@@ -30,10 +31,22 @@ namespace WPF_Project.Widoki
             InitializeComponent();
         }
 
-        private void CreateAuthor_MenuItem_Click(object sender, RoutedEventArgs e)
+        private void AuthorHeader_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            CreateWindow creationWindow = new CreateWindow(1);
-            creationWindow.ShowDialog();
+            EntitiesListWindow listWindow = new EntitiesListWindow(1);
+            listWindow.ShowDialog();
+        }
+
+        private void FormatHeader_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntitiesListWindow listWindow = new EntitiesListWindow(2);
+            listWindow.ShowDialog();
+        }
+
+        private void GenreHeader_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            EntitiesListWindow listWindow = new EntitiesListWindow(3);
+            listWindow.ShowDialog();
         }
     }
 }
