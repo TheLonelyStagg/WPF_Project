@@ -35,5 +35,51 @@ namespace WPF_Project.Widoki
             CreateWindow creationWindow = new CreateWindow(1);
             creationWindow.ShowDialog();
         }
+
+        private void EditAuthor_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //na razie bierzemy jakikolwiek obiekt z bazy
+            //trzeba będzie zmienić to na wybrany z listy
+            var author = RepositoryWorkUnit.Instance.Authors.Get().FirstOrDefault();
+            CreateWindow creationWindow = new CreateWindow(1, author);
+            creationWindow.ShowDialog();
+        }
+
+        private void CreateAlbum_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(2);
+            creationWindow.ShowDialog();
+        }
+
+        private void EditAlbum_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var album = RepositoryWorkUnit.Instance.Albums.Get().FirstOrDefault();
+            CreateWindow creationWindow = new CreateWindow(2, album);
+            creationWindow.ShowDialog();
+        }
+
+        private void CreateFormat_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(3);
+            creationWindow.ShowDialog();
+        }
+
+        private void EditFormat_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var format = RepositoryWorkUnit.Instance.Formats.Get().FirstOrDefault();
+            CreateWindow creationWindow = new CreateWindow(3, format);
+            creationWindow.ShowDialog();
+        }
+
+        private void CreateGenre_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(4);
+            creationWindow.ShowDialog();
+        }
+
+        private void EditGenre_MenuItwm_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
