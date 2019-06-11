@@ -21,26 +21,16 @@
                 <MenuItem Header="Rozwiń wszystkie"/>
                 <MenuItem Header="Zamknij"/>
             </MenuItem>
-            <MenuItem Header="Autor">
-                <MenuItem Header="Dodaj" Name="CreateAuthor_MenuItem" Click="CreateAuthor_MenuItem_Click"/>
-                <MenuItem Header="Edytuj" Name="EditAuthor_MenuItem" Click="EditAuthor_MenuItem_Click"/>
-                <MenuItem Header="Usuń"/>
-                <MenuItem Header="Usuń wszystkie dzieła"/>
-            </MenuItem>
             <MenuItem Header="Album">
-                <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" Click="CreateAlbum_MenuItem_Click"/>
-                <MenuItem Header="Edytuj" Name="EditAlbum_MenuItem" Click="EditAlbum_MenuItem_Click"/>
+                <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" />
+                <MenuItem Header="Edytuj" Name="EditAlbum_MenuItem"/>
                 <MenuItem Header="Usuń"/>
             </MenuItem>
-            <MenuItem Header="Wydanie">
-                <MenuItem Header="Dodaj" Name="CreateFormat_MenuItem" Click="CreateFormat_MenuItem_Click"/>
-                <MenuItem Header="Edytuj" Name="EditFormat_MenuItem" Click="EditFormat_MenuItem_Click"/>
-                <MenuItem Header="Usuń"/>
+            <MenuItem Header="Autor" Name="AuthorHeader_MenuItem" Click="AuthorHeader_MenuItem_Click">
             </MenuItem>
-            <MenuItem Header="Gatunek">
-                <MenuItem Header="Dodaj" Name="CreateGenre_MenuItem" Click="CreateGenre_MenuItem_Click"/>
-                <MenuItem Header="Edytuj" Name="EditGenre_MenuItwm" Click="EditGenre_MenuItwm_Click"/>
-                <MenuItem Header="Usuń"/>
+            <MenuItem Header="Wydanie" Name="FormatHeader_MenuItem" Click="FormatHeader_MenuItem_Click">
+            </MenuItem>
+            <MenuItem Header="Gatunek" Name="GenreHeader_MenuItem" Click="GenreHeader_MenuItem_Click">
             </MenuItem>
             <MenuItem Header="Szukaj">
             </MenuItem>

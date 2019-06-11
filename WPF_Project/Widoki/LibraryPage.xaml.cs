@@ -17,6 +17,7 @@ using Entities;
 using Repositories;
 using System.Diagnostics;
 using WPF_Project.OknaDodwania;
+using WPF_Project.OknaList;
 
 namespace WPF_Project.Widoki
 {
@@ -45,41 +46,22 @@ namespace WPF_Project.Widoki
             creationWindow.ShowDialog();
         }
 
-        private void CreateAlbum_MenuItem_Click(object sender, RoutedEventArgs e)
+        private void AuthorHeader_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            CreateWindow creationWindow = new CreateWindow(2);
-            creationWindow.ShowDialog();
+            EntitiesListWindow listWindow = new EntitiesListWindow(1);
+            listWindow.ShowDialog();
         }
 
-        private void EditAlbum_MenuItem_Click(object sender, RoutedEventArgs e)
+        private void FormatHeader_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var album = RepositoryWorkUnit.Instance.Albums.Get().FirstOrDefault();
-            CreateWindow creationWindow = new CreateWindow(2, album);
-            creationWindow.ShowDialog();
+            EntitiesListWindow listWindow = new EntitiesListWindow(2);
+            listWindow.ShowDialog();
         }
 
-        private void CreateFormat_MenuItem_Click(object sender, RoutedEventArgs e)
+        private void GenreHeader_MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            CreateWindow creationWindow = new CreateWindow(3);
-            creationWindow.ShowDialog();
-        }
-
-        private void EditFormat_MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var format = RepositoryWorkUnit.Instance.Formats.Get().FirstOrDefault();
-            CreateWindow creationWindow = new CreateWindow(3, format);
-            creationWindow.ShowDialog();
-        }
-
-        private void CreateGenre_MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            CreateWindow creationWindow = new CreateWindow(4);
-            creationWindow.ShowDialog();
-        }
-
-        private void EditGenre_MenuItwm_Click(object sender, RoutedEventArgs e)
-        {
-
+            EntitiesListWindow listWindow = new EntitiesListWindow(3);
+            listWindow.ShowDialog();
         }
     }
 }
