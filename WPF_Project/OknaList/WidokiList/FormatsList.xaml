@@ -9,6 +9,42 @@
       Title="FormatsList">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10" Name="formatListView" SelectionMode="Single" SelectionChanged="FormatListView_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Nazwa wydania" Width="250" DisplayMemberBinding="{Binding FormatName}" />
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Grid Grid.ColumnSpan="2" Grid.Column="3" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button Name="createNewFormat" Click="CreateNewFormat_Click">Dodaj nowe wydanie</Button>
+                <Button IsEnabled="False" Name="editNewFormat" Click="EditNewFormat_Click">Edytuj wydanie</Button>
+                <Button IsEnabled="False" Name="removeFormat" Click="RemoveFormat_Click">Usuń wydanie</Button>
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </Page>

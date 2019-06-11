@@ -38,9 +38,11 @@ namespace WPF_Project.OknaDodwania
                     break;
                 //tworzenie wydań
                 case 3:
+                    Loaded += CreateFormat_Page;
                     break;
                 //tworzenie gatunków
                 case 4:
+                    Loaded += CreateGenre_Page;
                     break;
 
             }
@@ -63,6 +65,40 @@ namespace WPF_Project.OknaDodwania
             {
                 windowScreen.NavigationService.Navigate(new CreateAuthorPage(this));
             }          
+        }
+
+        private void CreateFormat_Page(object sender, RoutedEventArgs e)
+        {
+            //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
+            //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
+
+            //obiekt idzie do edycji
+            if (_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateFormatPage(this, (FormatSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateFormatPage(this));
+            }
+        }
+
+        private void CreateGenre_Page(object sender, RoutedEventArgs e)
+        {
+            //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
+            //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
+
+            //obiekt idzie do edycji
+            if (_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateGenrePage(this, (GenreSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateGenrePage(this));
+            }
         }
     }
 }

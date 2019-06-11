@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_Project.OknaDodwania;
 using Entities;
+using System.ComponentModel;
 
 namespace WPF_Project.OknaList.WidokiList
 {
@@ -26,8 +27,7 @@ namespace WPF_Project.OknaList.WidokiList
         {
             InitializeComponent();
 
-            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
-           
+            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();    
         }
 
         private void AuthorListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,6 +50,7 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
+
         }
 
         private void EditAuthorBtn_Click(object sender, RoutedEventArgs e)

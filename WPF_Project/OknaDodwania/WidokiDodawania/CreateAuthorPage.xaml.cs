@@ -31,10 +31,8 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
             _context = context;
 
 
-            Debug.Write("tutaj");
             if (author != null)
             {
-                Debug.Write(author.Name);
                 AuthorNameBox.Text = author.Name;
                 AuthorBirthDate.Text = author.Date;
                 isEdit = true;
@@ -44,7 +42,6 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
                 authorTopLabel.Content = "Edytuj autora";
                 AddAuthorButton.Content = "Edytuj";
             }
-            Debug.Write("tam");
         }
 
         private void AddAuthorButton_Click(object sender, RoutedEventArgs e)

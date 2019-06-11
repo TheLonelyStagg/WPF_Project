@@ -31,21 +31,6 @@ namespace WPF_Project.Widoki
             InitializeComponent();
         }
 
-        private void CreateAuthor_MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            CreateWindow creationWindow = new CreateWindow(1);
-            creationWindow.ShowDialog();
-        }
-
-        private void EditAuthor_MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            //na razie bierzemy jakikolwiek obiekt z bazy
-            //trzeba będzie zmienić to na wybrany z listy
-            var author = RepositoryWorkUnit.Instance.Authors.Get().FirstOrDefault();
-            CreateWindow creationWindow = new CreateWindow(1, author);
-            creationWindow.ShowDialog();
-        }
-
         private void AuthorHeader_MenuItem_Click(object sender, RoutedEventArgs e)
         {
             EntitiesListWindow listWindow = new EntitiesListWindow(1);

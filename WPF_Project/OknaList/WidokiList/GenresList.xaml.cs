@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Project.OknaDodwania;
+using Entities;
 
 namespace WPF_Project.OknaList.WidokiList
 {
@@ -23,6 +25,48 @@ namespace WPF_Project.OknaList.WidokiList
         public GenresList(Window Context)
         {
             InitializeComponent();
+
+            genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+        }
+
+        private void GenresListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (genresListView.SelectedItems.Count > 0)
+            {
+                editGenreBtn.IsEnabled = true;
+                removeGenreBtn.IsEnabled = true;
+            }
+            else
+            {
+                editGenreBtn.IsEnabled = false;
+                removeGenreBtn.IsEnabled = false;
+            }
+        }
+
+        private void CreateNewGenre_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(4);
+            creationWindow.ShowDialog();
+
+            genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+        }
+
+        private void EditGenreBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GenreSet genre = (GenreSet)genresListView.SelectedItem;
+            CreateWindow creationWindow = new CreateWindow(4,genre);
+            creationWindow.ShowDialog();
+
+            genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+        }
+
+        private void RemoveGenreBtn_Click(object sender, RoutedEventArgs e)
+        {
+            GenreSet genre = (GenreSet)genresListView.SelectedItem;
+            RepositoryWorkUnit.Instance.Genres.Delete(genre);
+            RepositoryWorkUnit.Instance.Complete();
+
+            genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
         }
     }
 }

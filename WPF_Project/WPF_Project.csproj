@@ -76,6 +76,12 @@
     <Compile Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml.cs">
       <DependentUpon>CreateAuthorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OknaDodwania\WidokiDodawania\CreateFormatPage.xaml.cs">
+      <DependentUpon>CreateFormatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OknaDodwania\WidokiDodawania\CreateGenrePage.xaml.cs">
+      <DependentUpon>CreateGenrePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OknaList\EntitiesListWindow.xaml.cs">
       <DependentUpon>EntitiesListWindow.xaml</DependentUpon>
     </Compile>
@@ -106,6 +112,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OknaDodwania\WidokiDodawania\CreateFormatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OknaDodwania\WidokiDodawania\CreateGenrePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
