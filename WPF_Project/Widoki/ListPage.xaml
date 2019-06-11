@@ -25,10 +25,10 @@
                 <MenuItem Header="Zamknij otwartą" Click="CloseList_Click"/>
             </MenuItem>
             <MenuItem Header="Pozycja" Name="menuItem_position">
-                <MenuItem Header="Otwórz w bibliotece"/>
-                <MenuItem Header="Dodaj"/>
-                <MenuItem Header="Edytuj"/>
-                <MenuItem Header="Usuń"/>
+                <MenuItem Header="Otwórz w bibliotece" Name="menuItemItem_openInLib" IsEnabled="False"/>
+                <MenuItem Header="Dodaj" Name="menuItemItem_add"/>
+                <MenuItem Header="Edytuj" Name="menuItemItem_edit" IsEnabled="False"/>
+                <MenuItem Header="Usuń" Name="menuItemItem_delete" IsEnabled="False"/>
             </MenuItem>
             <MenuItem Header="Szukaj">
 
@@ -37,7 +37,7 @@
             </MenuItem>
         </Menu>
 
-        <TabControl Grid.Row="1" Margin="0 5 0 0" Name="tabControl">
+        <TabControl Grid.Row="1" Margin="0 5 0 0" Name="tabControl" SelectionChanged="TabControl_SelectionChanged">
             <!-- info o tabsach https://www.wpf-tutorial.com/tabcontrol/using-the-tabcontrol/ -->
         </TabControl>
 
