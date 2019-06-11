@@ -17,14 +17,13 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10">
+        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10" Name="listView" SelectionChanged="ListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nazwa" Width="250"  />
-                    <!-- tam jeszcze do każdego 
-                    DisplayMemberBinding="{Binding Name}"
+                    <GridViewColumn Header="Nazwa" Width="250" DisplayMemberBinding="{Binding CollectionName}" />
+                    <!-- Możemy dodać więcej
                     opis mniej wiecej na: https://www.wpf-tutorial.com/listview-control/listview-gridview-left-aligned-column-names/ -->
-                    <GridViewColumn Header="Utworzono" Width="200" />
+                    <GridViewColumn Header="Utworzono" Width="200" DisplayMemberBinding="{Binding CreationDate}" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -44,8 +43,8 @@
 
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <Button>Utwórz nową listę</Button>
-                <Button>Otwórz wybrane</Button>
-                <Button>Usuń wybrane</Button>
+                <Button IsEnabled="False" Name="btn_Open" Click="Btn_Open_Click">Otwórz wybrane</Button>
+                <Button IsEnabled="False" Name="btn_Delete">Usuń wybrane</Button>
             </StackPanel>
         </Grid>
 

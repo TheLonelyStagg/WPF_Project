@@ -26,7 +26,33 @@ namespace WPF_Project.Widoki
         public ListMenuPage()
         {
             InitializeComponent();
+            listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
+        }
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listView.SelectedItems.Count > 0)
+            {
+                btn_Open.IsEnabled = true;
+                btn_Delete.IsEnabled = true;
+            }
+            else
+            {
+                btn_Open.IsEnabled = false;
+                btn_Delete.IsEnabled = false;
+            }
+        }
+
+        private void Btn_Open_Click(object sender, RoutedEventArgs e)
+        {
+            List<int> indexesList = new List<int>();
+
+            foreach(AlbumCollectionSet position in listView.SelectedItems)
+            {
+                indexesList.Add(position.Id);
+            }
+
+            this.NavigationService.Navigate(new ListPage(indexesList));
         }
     }
 }

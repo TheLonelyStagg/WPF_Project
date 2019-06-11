@@ -20,10 +20,13 @@ namespace WPF_Project.Widoki
     /// </summary>
     public partial class ListPage : Page
     {
+        public int x;
+
         public ListPage()
         {
             InitializeComponent();
-            tabControl.Items.Add(getTabItemOf("kappa"));
+            //tabControl.Items.Add(getTabItemOf());
+           
         }
 
         public ListPage(IEnumerable<int> pageIDs)
@@ -32,14 +35,12 @@ namespace WPF_Project.Widoki
 
             foreach(var pageID in pageIDs)
             {
-
+                tabControl.Items.Add(getTabItemOf(pageID));
             }
 
-
-            tabControl.Items.Add(getTabItemOf("kappa"));
         }
 
-        private TabItem getTabItemOf(string header)
+        private TabItem getTabItemOf(int pageID)
         {
             TabItem tabItem = new TabItem();
 
@@ -47,15 +48,17 @@ namespace WPF_Project.Widoki
 
             GridView gridView = new GridView();
 
-            gridView.Columns.Add(new GridViewColumn() { Header = "Num.", Width = 70 }); //Bindingi
-            gridView.Columns.Add(new GridViewColumn() { Header = "Autor", Width = 150 });
-            gridView.Columns.Add(new GridViewColumn() { Header = "Tytuł", Width = 200 });
-            gridView.Columns.Add(new GridViewColumn() { Header = "Nośnik", Width = 150 });
-            gridView.Columns.Add(new GridViewColumn() { Header = "Ilość", Width = 200 });
+            listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get(pageID).CollectionRecordSets;
+
+            gridView.Columns.Add(new GridViewColumn() { Header = "Num.", Width = 70, DisplayMemberBinding = new Binding("Id") }); 
+            gridView.Columns.Add(new GridViewColumn() { Header = "Autor", Width = 150, DisplayMemberBinding = new Binding("Id") }); //TODO Bindingi
+            gridView.Columns.Add(new GridViewColumn() { Header = "Tytuł", Width = 200, DisplayMemberBinding = new Binding("AlbumSet.Name") });
+            gridView.Columns.Add(new GridViewColumn() { Header = "Nośnik", Width = 150, DisplayMemberBinding = new Binding("FormatSet.FormatName") });
+            
 
             listView.View = gridView;
 
-            tabItem.Header = header;
+            tabItem.Header = RepositoryWorkUnit.Instance.AlbumCollections.Get(pageID).CollectionName;
             tabItem.Content = listView;
 
             return tabItem;

@@ -35,8 +35,8 @@ namespace WPF_Project.Widoki
 
         private void ListMenuButton_OnClcik(object sender, RoutedEventArgs e)
         {
-            //this.NavigationService.Navigate(new ListMenuPage());
-            this.NavigationService.Navigate(new ListPage());
+            this.NavigationService.Navigate(new ListMenuPage());
+            
         }
     }
 }

@@ -38,26 +38,19 @@
         </Menu>
 
         <TabControl Grid.Row="1" Margin="0 5 0 0" Name="tabControl">
-            <TabItem Header="Lista1">
-                <!-- info o tabsach https://www.wpf-tutorial.com/tabcontrol/using-the-tabcontrol/ -->
-                <ListView>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Num." Width="70"  />
-                            <GridViewColumn Header="Autor" Width="150"  />
-                            <!-- info o nagłówkach w ListMenuWindow -->
-                            <GridViewColumn Header="Tytuł" Width="200" />
-                            <GridViewColumn Header="Nośnik" Width="150" />
-                            <GridViewColumn Header="Ilość" Width="200" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </TabItem>
-            <TabItem Header="Lista2" />
+            <!-- info o tabsach https://www.wpf-tutorial.com/tabcontrol/using-the-tabcontrol/ -->
         </TabControl>
 
         <StatusBar Grid.Row="2">
-            <Label>Ilość pozycji: x [ y aktualnie zaznaczonych ]</Label>
+            
+            <Label>
+                <Label.Content>
+                    <MultiBinding StringFormat="Ilość pozycji: {0} [ {1} aktualnie zaznaczonych ]">
+                        <Binding  />
+                        <Binding />
+                    </MultiBinding>
+                </Label.Content>
+            </Label>
         </StatusBar>
     </Grid>
 </Page>
