@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Common;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -22,10 +23,37 @@ namespace WPF_Project
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            ChangeSkin(Skin.Nightmod);
             using (var scope = container.Get.BeginLifetimeScope())
             {
                 MainWindow mainWindow = container.Get.Resolve<MainWindow>();
                 mainWindow.Show();
+            }
+            
+        }
+
+        public void ChangeSkin(Skin Skin)
+        {
+            Resources.Clear();
+            Resources.MergedDictionaries.Clear();
+            if (Skin == Skin.Default)
+                ApplyResources("/Styles;component/Default.xaml");
+            else if (Skin == Skin.Nightmod)
+                ApplyResources("/Styles;component/NightMod.xaml");
+            ApplyResources("/Styles;component/Shared.xaml");
+        }
+
+        private void ApplyResources(string src)
+        {
+            var dict = new ResourceDictionary() { Source = new Uri(src, UriKind.Relative) };
+            foreach (var mergeDict in dict.MergedDictionaries)
+            {
+                Resources.MergedDictionaries.Add(mergeDict);
+            }
+
+            foreach (var key in dict.Keys)
+            {
+                Resources[key] = dict[key];
             }
         }
 
