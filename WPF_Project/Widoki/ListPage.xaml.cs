@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Entities;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +27,6 @@ namespace WPF_Project.Widoki
         public ListPage()
         {
             InitializeComponent();
-            //tabControl.Items.Add(getTabItemOf());
-           
         }
 
         public ListPage(IEnumerable<int> pageIDs)
@@ -40,21 +40,34 @@ namespace WPF_Project.Widoki
 
         }
 
+        public class AuthorsNamesValueConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                return String.Join(", ", ((HashSet<AuthorSet>)value).Select(x => x.Name));
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         private TabItem getTabItemOf(int pageID)
         {
             TabItem tabItem = new TabItem();
 
             ListView listView = new ListView();
+            listView.SelectionChanged += ListView_SelectionChanged;
 
             GridView gridView = new GridView();
 
             listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get(pageID).CollectionRecordSets;
 
             gridView.Columns.Add(new GridViewColumn() { Header = "Num.", Width = 70, DisplayMemberBinding = new Binding("Id") }); 
-            gridView.Columns.Add(new GridViewColumn() { Header = "Autor", Width = 150, DisplayMemberBinding = new Binding("Id") }); //TODO Bindingi
+            gridView.Columns.Add(new GridViewColumn() { Header = "Autor", Width = 150, DisplayMemberBinding = new Binding("AlbumSet.AuthorSets") { Converter = new AuthorsNamesValueConverter() } });
             gridView.Columns.Add(new GridViewColumn() { Header = "Tytuł", Width = 200, DisplayMemberBinding = new Binding("AlbumSet.Name") });
             gridView.Columns.Add(new GridViewColumn() { Header = "Nośnik", Width = 150, DisplayMemberBinding = new Binding("FormatSet.FormatName") });
-            
 
             listView.View = gridView;
 
@@ -64,6 +77,31 @@ namespace WPF_Project.Widoki
             return tabItem;
         }
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            menuItem_position.IsEnabled = true;
+            int howManySelected = ((ListView)((TabItem)tabControl.SelectedItem).Content).SelectedItems.Count;
+            if (howManySelected > 0)
+            {
+                if (howManySelected == 1)
+                {
+                    menuItemItem_openInLib.IsEnabled = true;
+                    menuItemItem_edit.IsEnabled = true;
+                }
+                else
+                {
+                    menuItemItem_openInLib.IsEnabled = false;
+                    menuItemItem_edit.IsEnabled = false;
+                }
+                menuItemItem_delete.IsEnabled = true;
+            }
+            else
+            {
+                menuItemItem_openInLib.IsEnabled = false;
+                menuItemItem_edit.IsEnabled = false;
+                menuItemItem_delete.IsEnabled = false;
+            }
+        }
 
         private void SaveList_Click(object sender, RoutedEventArgs e)
         {
@@ -87,6 +125,14 @@ namespace WPF_Project.Widoki
 
         }
 
-        
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(tabControl.Items.Count >0)
+            {
+                menuItem_position.IsEnabled = true;
+            }
+            else
+                menuItem_position.IsEnabled = false;
+        }
     }
 }
