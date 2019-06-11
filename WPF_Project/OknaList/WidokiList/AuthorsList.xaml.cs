@@ -48,6 +48,8 @@ namespace WPF_Project.OknaList.WidokiList
         {
             CreateWindow creationWindow = new CreateWindow(1);
             creationWindow.ShowDialog();
+
+            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
         }
 
         private void EditAuthorBtn_Click(object sender, RoutedEventArgs e)
@@ -55,14 +57,18 @@ namespace WPF_Project.OknaList.WidokiList
             AuthorSet author = (AuthorSet)authorListView.SelectedItem;
             CreateWindow creationWindow = new CreateWindow(1,author);
             creationWindow.ShowDialog();
+
+            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
         }
 
         private void RemoveAuthorBtn_Click(object sender, RoutedEventArgs e)
         {
             AuthorSet author = (AuthorSet)authorListView.SelectedItem;
             RepositoryWorkUnit.Instance.Authors.Delete(author);
+            RepositoryWorkUnit.Instance.Complete();
 
-            authorListView.Items.Remove(author);
+            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
+
         }
     }
 }
