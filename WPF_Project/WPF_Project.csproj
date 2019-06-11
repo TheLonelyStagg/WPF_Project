@@ -189,6 +189,10 @@
       <Project>{452fcaed-2a02-4b0f-a7f3-60d122e7d7f3}</Project>
       <Name>Entities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Globalization\Globalization.csproj">
+      <Project>{74cebafe-2082-41a3-8fbb-d7631123a907}</Project>
+      <Name>Globalization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{2752165f-3690-4a98-94ef-3bfc75626071}</Project>
       <Name>Interfaces</Name>

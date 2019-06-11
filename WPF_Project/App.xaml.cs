@@ -14,6 +14,12 @@ namespace WPF_Project
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            System.Globalization.CultureInfo culture = System.Globalization.CultureInfo.CurrentCulture;
+            Globalization.Language.Culture = culture;
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             using (var scope = container.Get.BeginLifetimeScope())
