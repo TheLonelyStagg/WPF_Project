@@ -46,6 +46,12 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
         {
             string genrename = GenreNameBox.Text.ToString();
 
+            var message = ValidationClass.validateStringTextbox(genrename);
+            if(!message.Item1)
+            {
+                MessageBox.Show(message.Item2);
+                return;
+            }
             if(isEdit)
             {
                 var genre = RepositoryWorkUnit.Instance.Genres.Get().FirstOrDefault(x => x.Id == _genre.Id);

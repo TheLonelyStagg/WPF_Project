@@ -49,7 +49,21 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
             string authorname = AuthorNameBox.Text.ToString();
             string authorBirth = AuthorBirthDate.Text.ToString();
 
-            if(isEdit)
+            var message = ValidationClass.validateStringTextbox(authorname);
+            if (!message.Item1)
+            {
+                MessageBox.Show(message.Item2);
+                return;
+            }
+
+            message = ValidationClass.validateDateTextbox(authorBirth);
+            if(!message.Item1)
+            {
+                MessageBox.Show(message.Item2);
+                return;
+            }
+
+            if (isEdit)
             {
                 var author = RepositoryWorkUnit.Instance.Authors.Get().FirstOrDefault(x => x.Id == _author.Id);
 

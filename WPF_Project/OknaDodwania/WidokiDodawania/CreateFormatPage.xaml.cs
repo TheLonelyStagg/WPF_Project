@@ -44,7 +44,15 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
         private void AddFormatButton_Click(object sender, RoutedEventArgs e)
         {
             string formatname = FormatNameBox.Text.ToString();
-            if(isEdit)
+
+            var message = ValidationClass.validateStringTextbox(formatname);
+            if (!message.Item1)
+            {
+                MessageBox.Show(message.Item2);
+                return;
+            }
+
+            if (isEdit)
             {
                 var format = RepositoryWorkUnit.Instance.Formats.Get().FirstOrDefault(x => x.Id == _format.Id);
 
