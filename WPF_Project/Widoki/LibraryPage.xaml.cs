@@ -39,14 +39,7 @@ namespace WPF_Project.Widoki
             view.GroupDescriptions.Add(groupDescription);
             */
 
-            listView.ItemsSource = RepositoryWorkUnit.Instance.Albums.Get()
-                                            .SelectMany(
-                                                 ctc => ctc.AuthorSets.Select(
-                                                    grp => new KeyValuePair<string, AlbumSet>(grp.Name, ctc))).ToList();
-             
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Key");
-            view.GroupDescriptions.Add(groupDescription);
+            InitializeSourceItems();
 
         }
 
@@ -68,7 +61,37 @@ namespace WPF_Project.Widoki
             listWindow.ShowDialog();
         }
 
-       
+        private void CreateAlbum_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(2);
+            creationWindow.ShowDialog();
+
+            InitializeSourceItems();
+        }
+
+        private void EditAlbum_MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            //AlbumSet album = (AlbumSet)listView.SelectedItem;
+            KeyValuePair<string, AlbumSet> pair = (KeyValuePair<string, AlbumSet>)listView.SelectedItem;
+            AlbumSet album = pair.Value;
+
+            CreateWindow creationWindow = new CreateWindow(2, album);
+            creationWindow.ShowDialog();
+
+            InitializeSourceItems();
+        }
+
+        public void InitializeSourceItems()
+        {
+            listView.ItemsSource = RepositoryWorkUnit.Instance.Albums.Get()
+                                           .SelectMany(
+                                                ctc => ctc.AuthorSets.Select(
+                                                   grp => new KeyValuePair<string, AlbumSet>(grp.Name, ctc))).ToList();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Key");
+            view.GroupDescriptions.Add(groupDescription);
+        }
     }
 
     public class AuthorsNamesValueConverter : IValueConverter

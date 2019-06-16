@@ -35,6 +35,7 @@ namespace WPF_Project.OknaDodwania
                     break;
                 //tworzenie albumów
                 case 2:
+                    Loaded += CreateAlbum_Page;
                     break;
                 //tworzenie wydań
                 case 3:
@@ -98,6 +99,23 @@ namespace WPF_Project.OknaDodwania
             else
             {
                 windowScreen.NavigationService.Navigate(new CreateGenrePage(this));
+            }
+        }
+
+        private void CreateAlbum_Page(object sender, RoutedEventArgs e)
+        {
+            //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
+            //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
+
+            //obiekt idzie do edycji
+            if (_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateAlbumPage(this, (AlbumSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateAlbumPage(this));
             }
         }
     }
