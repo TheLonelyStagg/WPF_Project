@@ -11,6 +11,7 @@
     <Page.Resources>
         <local:AuthorsNamesValueConverter x:Key="AuthorsNamesValueConverter" />
         <local:GenresValueConverter x:Key="GenresValueConverter" />
+        <local:ColumnsWidthConverter x:Key="ColumnsWidthConverter"/>
     </Page.Resources>
     
     <Grid>
@@ -41,19 +42,24 @@
             </MenuItem>
         </Menu>
 
-        <ListView Grid.Row="1" Name="listView"  >
+        <ListView Grid.Row="1" Name="listView" >
             <ListView.View >
                 <GridView >
-                    <GridViewColumn Header="Num." Width="auto" 
+                    <GridViewColumn Header="Num." 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=5}" 
                                     DisplayMemberBinding="{Binding Path=Value.Id}"/>
-                    <GridViewColumn Header="Autor" Width="auto" 
+                    <GridViewColumn Header="Autor" 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=30}" 
                                     DisplayMemberBinding="{Binding Path=Value.AuthorSets, Converter={StaticResource AuthorsNamesValueConverter}}" />
                     <!-- info o nagłówkach w ListMenuWindow -->
-                    <GridViewColumn Header="Tytuł" Width="auto" 
+                    <GridViewColumn Header="Tytuł" 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=25}" 
                                     DisplayMemberBinding="{Binding Path=Value.Name}" />
-                    <GridViewColumn Header="Rok wydania" Width="auto" 
+                    <GridViewColumn Header="Rok wydania" 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=15}" 
                                     DisplayMemberBinding="{Binding Path=Value.ReleaseDate}" />
-                    <GridViewColumn Header="Gatunki" Width="auto" 
+                    <GridViewColumn Header="Gatunki" 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=25}" 
                                     DisplayMemberBinding="{Binding Path=Value.GenreSets, Converter={StaticResource GenresValueConverter}}" />
                 </GridView>
             </ListView.View>
