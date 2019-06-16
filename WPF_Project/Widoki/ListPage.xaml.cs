@@ -50,8 +50,93 @@ namespace WPF_Project.Widoki
 
         private void Print_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Gratulacje, drukujesz!", "Congratulation", MessageBoxButton.OK, MessageBoxImage.Information);
+            //Zapytaj o zapis
+
+            PrintList();
             e.Handled = true;
+        }
+
+        private FlowDocument CreateDoc ()
+        {
+            
+            FlowDocument doc = new FlowDocument();
+        
+            Table table1 = new Table();
+
+            doc.Blocks.Add(table1);
+
+            doc.ColumnWidth = 999999;
+
+            int cols = 4;
+
+            for(int c = 0; c<cols; c++)
+            {
+                table1.Columns.Add(new TableColumn());
+                table1.Columns[c].Width = new GridLength(260);
+            }
+
+            table1.Columns[0].Width = new GridLength(50);
+
+            table1.RowGroups.Add(new TableRowGroup());
+
+            table1.RowGroups[0].Rows.Add(new TableRow());
+
+            TableRow currentRow = table1.RowGroups[0].Rows[0];
+            currentRow.Background = System.Windows.Media.Brushes.DarkGray; //Tutaj kolor nagłwokow
+            currentRow.Foreground = System.Windows.Media.Brushes.White;
+
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Nr."))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Autor"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Tytuł"))));
+            currentRow.Cells.Add(new TableCell(new Paragraph(new Run("Nośnik"))));
+
+
+
+            int indx = 0;
+            foreach (CollectionRecordSet rowObject in ((ListView)((TabItem)tabControl.SelectedItem).Content).ItemsSource)
+            {
+                table1.RowGroups[0].Rows.Add(new TableRow());
+
+                currentRow = table1.RowGroups[0].Rows[indx + 1];
+
+                if( indx % 2 == 0)
+                    currentRow.Background = System.Windows.Media.Brushes.White;
+                else
+                    currentRow.Background = System.Windows.Media.Brushes.LightGray;
+
+                currentRow.Foreground = System.Windows.Media.Brushes.Black;
+
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(indx + ""))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(
+                    String.Join(", ", rowObject.AlbumSet.AuthorSets.Select(x => x.Name))
+                    ))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(rowObject.AlbumSet.Name))));
+                currentRow.Cells.Add(new TableCell(new Paragraph(new Run(rowObject.FormatSet.FormatName))));
+                
+                indx++;
+            }
+
+            return doc;
+           
+        }
+
+
+        private void PrintList()
+        {
+            PrintDialog printDialog = new PrintDialog();
+
+            FlowDocument document = CreateDoc();
+
+            document.Name = "FlowDoc";
+
+            IDocumentPaginatorSource idpSource = document;
+
+            bool? result = printDialog.ShowDialog();
+
+            if(result == true)
+                printDialog.PrintDocument(idpSource.DocumentPaginator, "Hello WPF Printing.");
+
+
         }
 
         public class AuthorsNamesValueConverter : IValueConverter
