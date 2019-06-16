@@ -26,6 +26,18 @@ namespace WPF_Project.OknaList.WidokiList
         {
             InitializeComponent();
             formatListView.ItemsSource = RepositoryWorkUnit.Instance.Formats.Get();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(formatListView.ItemsSource);
+            view.Filter = Filter;
+        }
+
+        private bool Filter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+            {
+                return true;
+            }
+            else return ((item as FormatSet).FormatName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void FormatListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -48,6 +60,9 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             formatListView.ItemsSource = RepositoryWorkUnit.Instance.Formats.Get();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(formatListView.ItemsSource);
+            view.Filter = Filter;
         }
 
         private void EditNewFormat_Click(object sender, RoutedEventArgs e)
@@ -57,6 +72,9 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             formatListView.ItemsSource = RepositoryWorkUnit.Instance.Formats.Get();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(formatListView.ItemsSource);
+            view.Filter = Filter;
         }
 
         private void RemoveFormat_Click(object sender, RoutedEventArgs e)
@@ -67,6 +85,11 @@ namespace WPF_Project.OknaList.WidokiList
             RepositoryWorkUnit.Instance.Complete();
 
             formatListView.ItemsSource = RepositoryWorkUnit.Instance.Formats.Get();
+        }
+
+        private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(formatListView.ItemsSource).Refresh();
         }
     }
 }

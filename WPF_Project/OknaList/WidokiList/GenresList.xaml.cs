@@ -27,6 +27,18 @@ namespace WPF_Project.OknaList.WidokiList
             InitializeComponent();
 
             genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(genresListView.ItemsSource);
+            view.Filter = Filter;
+        }
+
+        private bool Filter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+            {
+                return true;
+            }
+            else return ((item as GenreSet).GenreName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void GenresListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,6 +61,8 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(genresListView.ItemsSource);
+            view.Filter = Filter;
         }
 
         private void EditGenreBtn_Click(object sender, RoutedEventArgs e)
@@ -58,6 +72,8 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(genresListView.ItemsSource);
+            view.Filter = Filter;
         }
 
         private void RemoveGenreBtn_Click(object sender, RoutedEventArgs e)
@@ -67,6 +83,11 @@ namespace WPF_Project.OknaList.WidokiList
             RepositoryWorkUnit.Instance.Complete();
 
             genresListView.ItemsSource = RepositoryWorkUnit.Instance.Genres.Get();
+        }
+
+        private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(genresListView.ItemsSource).Refresh();
         }
     }
 }

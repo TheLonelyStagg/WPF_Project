@@ -40,9 +40,13 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <Button Name="createNewGenre" Click="CreateNewGenre_Click">Dodaj nowy gatunek</Button>
-                <Button IsEnabled="False" Name="editGenreBtn" Click="EditGenreBtn_Click">Edytuj gatunek</Button>
-                <Button IsEnabled="False" Name="removeGenreBtn" Click="RemoveGenreBtn_Click">Usuń gatunek</Button>
+                <Button Margin="3" Name="createNewGenre" Click="CreateNewGenre_Click">Dodaj nowy gatunek</Button>
+                <Button Margin="3" IsEnabled="False" Name="editGenreBtn" Click="EditGenreBtn_Click">Edytuj gatunek</Button>
+                <Button Margin="3" IsEnabled="False" Name="removeGenreBtn" Click="RemoveGenreBtn_Click">Usuń gatunek</Button>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Szukaj:</Label>
+                    <TextBox Margin="3" Name="txtFilter" TextChanged="TxtFilter_TextChanged" Width="92"></TextBox>
+                </StackPanel>
             </StackPanel>
         </Grid>
 
