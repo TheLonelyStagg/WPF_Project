@@ -90,7 +90,48 @@ namespace WPF_Project.Widoki
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Key");
+            view.Filter = AlbumFilter;
             view.GroupDescriptions.Add(groupDescription);
+        }
+
+        private bool AlbumFilter(object item)
+        {
+            KeyValuePair<string, AlbumSet> pair = (KeyValuePair<string, AlbumSet>)item;
+            AlbumSet album = pair.Value;
+            if(String.IsNullOrEmpty(txtFilter.Text))
+            {
+                return true;
+            }
+            else
+            {
+                if(album.Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+
+                List<AuthorSet> authors = album.AuthorSets.ToList();
+                foreach(AuthorSet autor in authors)
+                {
+                    if(autor.Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return true;
+                    }
+                }
+                List<GenreSet> genres = album.GenreSets.ToList();
+                foreach(GenreSet genre in genres)
+                {
+                    if(genre.GenreName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+
+        private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(listView.ItemsSource).Refresh();
         }
     }
 

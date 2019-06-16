@@ -39,6 +39,7 @@
             <MenuItem Header="Gatunek" Name="GenreHeader_MenuItem" Click="GenreHeader_MenuItem_Click">
             </MenuItem>
             <MenuItem Header="Szukaj">
+                <TextBox Name="txtFilter" TextChanged="TxtFilter_TextChanged" Width="92"></TextBox>
             </MenuItem>
         </Menu>
 
