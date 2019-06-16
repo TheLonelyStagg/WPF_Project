@@ -18,6 +18,7 @@ using Repositories;
 using System.Diagnostics;
 using WPF_Project.OknaDodwania;
 using WPF_Project.OknaList;
+using System.Globalization;
 
 namespace WPF_Project.Widoki
 {
@@ -29,6 +30,24 @@ namespace WPF_Project.Widoki
         public LibraryPage()
         {
             InitializeComponent();
+
+            /*
+            listView.ItemsSource = RepositoryWorkUnit.Instance.Albums.Get();
+            
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("AuthorSets",new AuthorsNamesValueConverter());
+            view.GroupDescriptions.Add(groupDescription);
+            */
+
+            listView.ItemsSource = RepositoryWorkUnit.Instance.Albums.Get()
+                                            .SelectMany(
+                                                 ctc => ctc.AuthorSets.Select(
+                                                    grp => new KeyValuePair<string, AlbumSet>(grp.Name, ctc))).ToList();
+             
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Key");
+            view.GroupDescriptions.Add(groupDescription);
+
         }
 
         private void AuthorHeader_MenuItem_Click(object sender, RoutedEventArgs e)
@@ -48,5 +67,35 @@ namespace WPF_Project.Widoki
             EntitiesListWindow listWindow = new EntitiesListWindow(3);
             listWindow.ShowDialog();
         }
+
+       
     }
+
+    public class AuthorsNamesValueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return String.Join(", ", ((HashSet<AuthorSet>)value).Select(x => x.Name));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class GenresValueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return String.Join(", ", ((HashSet<GenreSet>)value).Select(x => x.GenreName));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
 }

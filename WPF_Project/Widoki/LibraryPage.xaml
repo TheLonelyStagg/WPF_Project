@@ -8,6 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="LibraryPage">
 
+    <Page.Resources>
+        <local:AuthorsNamesValueConverter x:Key="AuthorsNamesValueConverter" />
+        <local:GenresValueConverter x:Key="GenresValueConverter" />
+    </Page.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -36,15 +41,20 @@
             </MenuItem>
         </Menu>
 
-        <ListView Grid.Row="1">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Num." Width="50"  />
-                    <GridViewColumn Header="Autor" Width="150"  />
+        <ListView Grid.Row="1" Name="listView" SelectionChanged="ListView_SelectionChanged" >
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn Header="Num." Width="auto" 
+                                    DisplayMemberBinding="{Binding Path=Value.Id}"/>
+                    <GridViewColumn Header="Autor" Width="auto" 
+                                    DisplayMemberBinding="{Binding Path=Value.AuthorSets, Converter={StaticResource AuthorsNamesValueConverter}}" />
                     <!-- info o nagłówkach w ListMenuWindow -->
-                    <GridViewColumn Header="Tytuł" Width="200" />
-                    <GridViewColumn Header="Rok wydania" Width="150" />
-                    <GridViewColumn Header="Producent" Width="200" />
+                    <GridViewColumn Header="Tytuł" Width="auto" 
+                                    DisplayMemberBinding="{Binding Path=Value.Name}" />
+                    <GridViewColumn Header="Rok wydania" Width="auto" 
+                                    DisplayMemberBinding="{Binding Path=Value.ReleaseDate}" />
+                    <GridViewColumn Header="Gatunki" Width="auto" 
+                                    DisplayMemberBinding="{Binding Path=Value.GenreSets, Converter={StaticResource GenresValueConverter}}" />
                 </GridView>
             </ListView.View>
 
@@ -53,7 +63,6 @@
             <ListView.GroupStyle>
                 <GroupStyle>
                     <GroupStyle.ContainerStyle>
-
                         <Style TargetType="{x:Type GroupItem}">
                             <Setter Property="Template">
                                 <Setter.Value>
@@ -61,11 +70,10 @@
                                         <Expander IsExpanded="True">
                                             <Expander.Header>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold"  />
-                                                    <TextBlock Text="{Binding ItemCount}"  />
-                                                    <TextBlock Text=" pozycji" />
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Bottom" />
                                                 </StackPanel>
                                             </Expander.Header>
+                                            <ItemsPresenter />
                                         </Expander>
                                     </ControlTemplate>
                                 </Setter.Value>
@@ -77,9 +85,5 @@
 
 
         </ListView>
-
-        <StatusBar Grid.Row="2">
-            <Label>Ilość pozycji: x (maybe? - possibly to change)</Label>
-        </StatusBar>
     </Grid>
 </Page>
