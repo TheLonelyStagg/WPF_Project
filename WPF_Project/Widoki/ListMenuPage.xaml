@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListMenuPage">
+    <Page.Resources>
+        <local:ColumnsWidthConverter x:Key="ColumnsWidthConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,13 +20,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10" Name="listView" SelectionChanged="ListView_SelectionChanged">
+        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10" Name="listView" SelectionChanged="ListView_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Nazwa" Width="250" DisplayMemberBinding="{Binding CollectionName}" />
+                    <GridViewColumn Header="Nazwa" 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=65}"
+                                    DisplayMemberBinding="{Binding CollectionName}" />
                     <!-- Możemy dodać więcej
                     opis mniej wiecej na: https://www.wpf-tutorial.com/listview-control/listview-gridview-left-aligned-column-names/ -->
-                    <GridViewColumn Header="Utworzono" Width="200" DisplayMemberBinding="{Binding CreationDate}" />
+                    <GridViewColumn Header="Utworzono" 
+                                    Width="{Binding ElementName=listView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=35}" 
+                                    DisplayMemberBinding="{Binding CreationDate}" />
                 </GridView>
             </ListView.View>
         </ListView>
