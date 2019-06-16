@@ -40,6 +40,20 @@ namespace WPF_Project.Widoki
 
         }
 
+        private void Print_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (tabControl == null || tabControl.Items.Count == 0)
+                e.CanExecute = false;
+            else
+                e.CanExecute = true;
+        }
+
+        private void Print_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Gratulacje, drukujesz!", "Congratulation", MessageBoxButton.OK, MessageBoxImage.Information);
+            e.Handled = true;
+        }
+
         public class AuthorsNamesValueConverter : IValueConverter
         {
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

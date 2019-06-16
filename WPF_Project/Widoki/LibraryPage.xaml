@@ -41,7 +41,7 @@
             </MenuItem>
         </Menu>
 
-        <ListView Grid.Row="1" Name="listView" SelectionChanged="ListView_SelectionChanged" >
+        <ListView Grid.Row="1" Name="listView"  >
             <ListView.View >
                 <GridView >
                     <GridViewColumn Header="Num." Width="auto" 
