@@ -27,8 +27,8 @@
                 <MenuItem Header="Zamknij"/>
             </MenuItem>
             <MenuItem Header="Album">
-                <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" />
-                <MenuItem Header="Edytuj" Name="EditAlbum_MenuItem"/>
+                <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" Click="CreateAlbum_MenuItem_Click" />
+                <MenuItem Header="Edytuj" Name="EditAlbum_MenuItem" Click="EditAlbum_MenuItem_Click"/>
                 <MenuItem Header="Usuń"/>
             </MenuItem>
             <MenuItem Header="Autor" Name="AuthorHeader_MenuItem" Click="AuthorHeader_MenuItem_Click">

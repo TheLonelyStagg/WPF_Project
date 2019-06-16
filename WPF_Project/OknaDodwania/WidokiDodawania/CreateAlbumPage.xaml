@@ -1,0 +1,67 @@
+﻿<Page x:Class="WPF_Project.OknaDodwania.WidokiDodawania.CreateAlbumPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:xcdg="http://schemas.xceed.com/wpf/xaml/datagrid"
+      xmlns:local="clr-namespace:WPF_Project.OknaDodwania.WidokiDodawania"
+      mc:Ignorable="d" 
+       d:DesignHeight="400" d:DesignWidth="500"
+      Title="CreateAlbumPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" HorizontalAlignment="Center" x:Name="albumTopLabel" FontWeight="Bold">Stwórz album</Label>
+        <StackPanel  Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Height="auto">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Nazwa albumu:</Label>
+            <TextBox Margin="3,12"  VerticalAlignment="Center" Width="212" x:Name="albumNameTextBox" Height="20"></TextBox>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Height="auto">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Data wydania:</Label>
+            <TextBox Margin="3,12"  VerticalAlignment="Center" Width="212" x:Name="albumRealaseDateBox" Height="20"></TextBox>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Height="70">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Opis:</Label>
+            <TextBox Margin="3,16,3,14"  VerticalAlignment="Center" Width="212" x:Name="albumDescriptionBox" Height="38"></TextBox>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="4" Orientation="Horizontal" Height="auto">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Autorzy albumu:</Label>
+            <xctk:CheckComboBox x:Name="albumAuthorsComboBox" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             Margin="0,12" Width="214" Height="20" />
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Height="auto">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Gatunki:</Label>
+            <xctk:CheckComboBox x:Name="albumGenresComboBox" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center"
+                             Margin="0,12" Width="214" Height="20" />
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Height="30" HorizontalAlignment="Right">
+            <Button Margin="3" Width="60" Content="Dodaj" x:Name="addAlbumButton" Click="AddAlbumButton_Click"></Button>
+            <Button Margin="3" Width="60" Content="Wróć" x:Name="returnButton" Click="ReturnButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
