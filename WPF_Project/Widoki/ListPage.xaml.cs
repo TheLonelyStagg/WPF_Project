@@ -159,16 +159,73 @@ namespace WPF_Project.Widoki
             TabItem tabItem = new TabItem();
 
             ListView listView = new ListView();
+
             listView.SelectionChanged += ListView_SelectionChanged;
 
             GridView gridView = new GridView();
 
             listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get(pageID).CollectionRecordSets;
 
-            gridView.Columns.Add(new GridViewColumn() { Header = "Num.", Width = 70, DisplayMemberBinding = new Binding("Id") }); 
-            gridView.Columns.Add(new GridViewColumn() { Header = "Autor", Width = 150, DisplayMemberBinding = new Binding("AlbumSet.AuthorSets") { Converter = new AuthorsNamesValueConverter() } });
-            gridView.Columns.Add(new GridViewColumn() { Header = "Tytuł", Width = 200, DisplayMemberBinding = new Binding("AlbumSet.Name") });
-            gridView.Columns.Add(new GridViewColumn() { Header = "Nośnik", Width = 150, DisplayMemberBinding = new Binding("FormatSet.FormatName") });
+
+            gridView.Columns.Add(new GridViewColumn()
+            {
+                Header = "Num.",
+                DisplayMemberBinding = new Binding("Id")
+            });
+            gridView.Columns.Add(new GridViewColumn()
+            {
+                Header = "Autor",
+                DisplayMemberBinding = new Binding("AlbumSet.AuthorSets") { Converter = new AuthorsNamesValueConverter() }
+            });
+            gridView.Columns.Add(new GridViewColumn()
+            {
+                Header = "Tytuł",
+                DisplayMemberBinding = new Binding("AlbumSet.Name")
+            });
+            gridView.Columns.Add(new GridViewColumn()
+            {
+                Header = "Nośnik",
+                DisplayMemberBinding = new Binding("FormatSet.FormatName")
+            });
+
+            
+
+            BindingOperations.SetBinding(gridView.Columns[0],
+                GridViewColumn.WidthProperty,
+                new Binding("ActualWidth")
+                {
+                    ElementName = "tabControl",
+                    Converter = new ColumnsWidthConverter(),
+                    ConverterParameter = 5
+                });
+
+            BindingOperations.SetBinding(gridView.Columns[1],
+                GridViewColumn.WidthProperty,
+                new Binding("ActualWidth")
+                {
+                    ElementName = "tabControl",
+                    Converter = new ColumnsWidthConverter(),
+                    ConverterParameter = 40
+                });
+
+            BindingOperations.SetBinding(gridView.Columns[2],
+                GridViewColumn.WidthProperty,
+                new Binding("ActualWidth")
+                {
+                    ElementName = "tabControl",
+                    Converter = new ColumnsWidthConverter(),
+                    ConverterParameter = 35
+                });
+
+            BindingOperations.SetBinding(gridView.Columns[3],
+                GridViewColumn.WidthProperty,
+                new Binding("ActualWidth")
+                {
+                    ElementName = "tabControl",
+                    Converter = new ColumnsWidthConverter(),
+                    ConverterParameter = 19
+                });
+
 
             listView.View = gridView;
 
