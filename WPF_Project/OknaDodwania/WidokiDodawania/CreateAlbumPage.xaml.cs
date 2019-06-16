@@ -79,7 +79,32 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
             string albumdesc = albumDescriptionBox.Text.ToString();
             string albumrealase = albumRealaseDateBox.Text.ToString();
 
-            if(isEdit)
+            var message = ValidationClass.validateStringTextbox(albumname);
+            if (!message.Item1)
+            {
+                System.Windows.MessageBox.Show(message.Item2);
+                return;
+            }
+
+            message = ValidationClass.validateStringTextbox(albumdesc);
+            if (!message.Item1)
+            {
+                System.Windows.MessageBox.Show(message.Item2);
+                return;
+            }
+
+            message = ValidationClass.validateDateTextbox(albumrealase);
+            if (!message.Item1)
+            {
+                System.Windows.MessageBox.Show(message.Item2);
+                return;
+            }
+            if(albumAuthorsComboBox.SelectedItems.Count < 1 || albumGenresComboBox.SelectedItems.Count < 1)
+            {
+                System.Windows.MessageBox.Show("Album musi posiadać autorów lub gatunki !!!");
+                return;
+            }
+            if (isEdit)
             {
                 var album = RepositoryWorkUnit.Instance.Albums.Get().FirstOrDefault(x => x.Id == _album.Id);
 
