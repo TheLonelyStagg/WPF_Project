@@ -27,7 +27,19 @@ namespace WPF_Project.OknaList.WidokiList
         {
             InitializeComponent();
 
-            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();    
+            authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
+
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(authorListView.ItemsSource);
+            view.Filter = Filter;
+        }
+
+        private bool Filter(object item)
+        {
+            if (String.IsNullOrEmpty(txtFilter.Text))
+            {
+                return true;
+            }
+            else return ((item as AuthorSet).Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private void AuthorListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,7 +62,8 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
-
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(authorListView.ItemsSource);
+            view.Filter = Filter;
         }
 
         private void EditAuthorBtn_Click(object sender, RoutedEventArgs e)
@@ -60,6 +73,8 @@ namespace WPF_Project.OknaList.WidokiList
             creationWindow.ShowDialog();
 
             authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(authorListView.ItemsSource);
+            view.Filter = Filter;
         }
 
         private void RemoveAuthorBtn_Click(object sender, RoutedEventArgs e)
@@ -70,6 +85,11 @@ namespace WPF_Project.OknaList.WidokiList
 
             authorListView.ItemsSource = RepositoryWorkUnit.Instance.Authors.Get();
 
+        }
+
+        private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(authorListView.ItemsSource).Refresh();
         }
     }
 }

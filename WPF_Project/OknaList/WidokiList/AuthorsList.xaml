@@ -42,9 +42,13 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <Button Name="createAuthorBtn" Click="CreateAuthorBtn_Click">Dodaj nowego autora</Button>
-                <Button IsEnabled="False"  Name="editAuthorBtn" Click="EditAuthorBtn_Click">Edytuj wybreanego autora</Button>
-                <Button IsEnabled="False" Name="removeAuthorBtn" Click="RemoveAuthorBtn_Click">Usuń wybrane</Button>
+                <Button Margin="3" Name="createAuthorBtn" Click="CreateAuthorBtn_Click">Dodaj nowego autora</Button>
+                <Button Margin="3" IsEnabled="False"  Name="editAuthorBtn" Click="EditAuthorBtn_Click">Edytuj wybranego autora</Button>
+                <Button Margin="3" IsEnabled="False" Name="removeAuthorBtn" Click="RemoveAuthorBtn_Click">Usuń wybrane</Button>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Szukaj:</Label>
+                    <TextBox Margin="3" Name="txtFilter" TextChanged="TxtFilter_TextChanged" Width="92"></TextBox>
+                </StackPanel>
             </StackPanel>
         </Grid>
 
