@@ -42,9 +42,9 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <Button>Utwórz nową listę</Button>
-                <Button IsEnabled="False" Name="btn_Open" Click="Btn_Open_Click">Otwórz wybrane</Button>
-                <Button IsEnabled="False" Name="btn_Delete">Usuń wybrane</Button>
+                <Button Margin="3" x:Name="createNewList" Click="CreateNewList_Click">Utwórz nową listę</Button>
+                <Button Margin="3" IsEnabled="False" Name="btn_Open" Click="Btn_Open_Click">Otwórz wybrane</Button>
+                <Button Margin="3" IsEnabled="False" Name="btn_Delete">Usuń wybrane</Button>
             </StackPanel>
         </Grid>
 

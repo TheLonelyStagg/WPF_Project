@@ -22,6 +22,7 @@ namespace WPF_Project.OknaDodwania
     public partial class CreateWindow : Window
     {
         private Object _entity;
+        private int _id;
 
         public CreateWindow(int widok, object entity = null)
         {
@@ -45,11 +46,12 @@ namespace WPF_Project.OknaDodwania
                 case 4:
                     Loaded += CreateGenre_Page;
                     break;
-
+                //tworzenie listy kolekcji
+                case 5:
+                    Loaded += CreateCollectionList_Page;
+                    break;
             }
-
         }
-
 
         private void CreateUser_Page(object sender, RoutedEventArgs e)
         {
@@ -116,6 +118,23 @@ namespace WPF_Project.OknaDodwania
             else
             {
                 windowScreen.NavigationService.Navigate(new CreateAlbumPage(this));
+            }
+        }
+
+        private void CreateCollectionList_Page(object sender, RoutedEventArgs e)
+        {
+            //wysyłam tutaj this (context) żeby potem w page była możliwość zamknięcia tego okna
+            //jak ktoś zna lepsze sposoby to zapraszam do ulepszenia
+
+            //obiekt idzie do edycji
+            if (_entity != null)
+            {
+                windowScreen.NavigationService.Navigate(new CreateCollectionListPage(this, (AlbumCollectionSet)_entity));
+            }
+            //tworzenie
+            else
+            {
+                windowScreen.NavigationService.Navigate(new CreateCollectionListPage(this));
             }
         }
     }

@@ -94,6 +94,9 @@
     <Compile Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml.cs">
       <DependentUpon>CreateAuthorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OknaDodwania\WidokiDodawania\CreateCollectionListPage.xaml.cs">
+      <DependentUpon>CreateCollectionListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OknaDodwania\WidokiDodawania\CreateFormatPage.xaml.cs">
       <DependentUpon>CreateFormatPage.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OknaDodwania\WidokiDodawania\CreateAuthorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OknaDodwania\WidokiDodawania\CreateCollectionListPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
