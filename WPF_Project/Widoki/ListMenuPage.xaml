@@ -20,7 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10" Name="listView" SelectionChanged="ListView_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+        <ListView Grid.ColumnSpan="3" Grid.Column="0" Margin="10" Name="listView" SelectionChanged="ListView_SelectionChanged" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Nazwa" 
