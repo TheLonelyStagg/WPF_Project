@@ -40,9 +40,13 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <Button Name="createNewFormat" Click="CreateNewFormat_Click">Dodaj nowe wydanie</Button>
-                <Button IsEnabled="False" Name="editNewFormat" Click="EditNewFormat_Click">Edytuj wydanie</Button>
-                <Button IsEnabled="False" Name="removeFormat" Click="RemoveFormat_Click">Usuń wydanie</Button>
+                <Button Margin="3" Name="createNewFormat" Click="CreateNewFormat_Click">Dodaj nowe wydanie</Button>
+                <Button Margin="3" IsEnabled="False" Name="editNewFormat" Click="EditNewFormat_Click">Edytuj wydanie</Button>
+                <Button Margin="3" IsEnabled="False" Name="removeFormat" Click="RemoveFormat_Click">Usuń wydanie</Button>
+                <StackPanel Orientation="Horizontal">
+                    <Label>Szukaj:</Label>
+                    <TextBox Margin="3" Name="txtFilter" TextChanged="TxtFilter_TextChanged" Width="92"></TextBox>
+                </StackPanel>
             </StackPanel>
         </Grid>
 
