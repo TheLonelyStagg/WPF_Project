@@ -92,12 +92,12 @@ namespace WPF_Project.Widoki
 
 
 
-            int indx = 0;
+            int indx = 1;
             foreach (CollectionRecordSet rowObject in ((ListView)((TabItem)tabControl.SelectedItem).Content).ItemsSource)
             {
                 table1.RowGroups[0].Rows.Add(new TableRow());
 
-                currentRow = table1.RowGroups[0].Rows[indx + 1];
+                currentRow = table1.RowGroups[0].Rows[indx];
 
                 if( indx % 2 == 0)
                     currentRow.Background = System.Windows.Media.Brushes.White;
