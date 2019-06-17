@@ -321,12 +321,36 @@ namespace WPF_Project.Widoki
 
             AlbumCollectionSet album = RepositoryWorkUnit.Instance.AlbumCollections.Get().FirstOrDefault(x => x.Id == id);
             int recordID = RepositoryWorkUnit.Instance.CollectionRecords.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
+
             CollectionRecordSet record = RepositoryWorkUnit.Instance.CollectionRecords.Get().FirstOrDefault(x => x.Id == recordID);
             record.AlbumCollectionId = album.Id;
 
             album.CollectionRecordSets.Add(record);
 
+            //tutaj testowo;
+            tabControl.Items.Remove(tab);
 
+            TabItem nowy = getTabItemOf(id);
+            tabControl.Items.Add(nowy);
+            nowy.Focus();
+
+        }
+
+        private void MenuItemItem_delete_Click(object sender, RoutedEventArgs e)
+        {
+            TabItem tab = (TabItem)tabControl.SelectedItem;
+            ListView listView = (ListView)tab.Content;
+
+            foreach(CollectionRecordSet record in listView.SelectedItems)
+            {
+                RepositoryWorkUnit.Instance.CollectionRecords.Delete(record);
+            }
+
+            tabControl.Items.Remove(tab);
+
+            TabItem nowy = getTabItemOf((int)tab.Tag);
+            tabControl.Items.Add(nowy);
+            nowy.Focus();
         }
     }
 }
