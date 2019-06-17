@@ -93,8 +93,11 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
         {
             if (collectionRecordFormatType.SelectedItems.Count > 1)
             {
-                MessageBox.Show("Możesz wybrać tylko jeden format!");
+                var itemSecond = collectionRecordFormatType.SelectedItems[1];
+                collectionRecordFormatType.UnSelectAll();
+                collectionRecordFormatType.SelectedItems.Add(itemSecond);
             }
+
         }
     }
 }
