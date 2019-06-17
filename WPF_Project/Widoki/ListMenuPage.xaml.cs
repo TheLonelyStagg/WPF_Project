@@ -63,5 +63,17 @@ namespace WPF_Project.Widoki
 
             listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
         }
+
+        private void Btn_Delete_Click(object sender, RoutedEventArgs e)
+        {
+            AlbumCollectionSet albumCollection = listView.SelectedItem as AlbumCollectionSet;
+            foreach(CollectionRecordSet record in albumCollection.CollectionRecordSets.ToList())
+            {
+                RepositoryWorkUnit.Instance.CollectionRecords.Delete(record);
+            }
+            RepositoryWorkUnit.Instance.AlbumCollections.Delete(albumCollection);
+
+            listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
+        }
     }
 }

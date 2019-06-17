@@ -48,6 +48,11 @@
             <!-- info o tabsach https://www.wpf-tutorial.com/tabcontrol/using-the-tabcontrol/ -->
         </TabControl>
 
-        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Label>Szukaj</Label>
+            <TextBox x:Name="txtFilter" Margin="3" TextChanged="TxtFilter_TextChanged" Width="242"></TextBox>
+        </StackPanel>
+
+
     </Grid>
 </Page>

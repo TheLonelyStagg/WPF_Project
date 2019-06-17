@@ -167,6 +167,10 @@ namespace WPF_Project.Widoki
 
             listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get(pageID).CollectionRecordSets;
 
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(listView.ItemsSource);
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Key");
+            view.Filter = CollectionListFilter;
+
 
             gridView.Columns.Add(new GridViewColumn()
             {
@@ -351,6 +355,44 @@ namespace WPF_Project.Widoki
             TabItem nowy = getTabItemOf((int)tab.Tag);
             tabControl.Items.Add(nowy);
             nowy.Focus();
+        }
+
+        private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TabItem tab = (TabItem)tabControl.SelectedItem;
+            ListView listView = (ListView)tab.Content;
+
+            CollectionViewSource.GetDefaultView(listView.ItemsSource).Refresh();
+        }
+
+        private bool CollectionListFilter(object item)
+        {
+            CollectionRecordSet record = item as CollectionRecordSet;
+            if(String.IsNullOrEmpty(txtFilter.Text))
+            {
+                return true;
+            }
+            else
+            {
+                if(record.FormatSet.FormatName.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase)>= 0)
+                {
+                    return true;
+                }
+                if(record.AlbumSet.Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+
+                List<AuthorSet> authors = record.AlbumSet.AuthorSets.ToList();
+                foreach(AuthorSet author in authors)
+                {
+                    if(author.Name.IndexOf(txtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
         }
     }
 }
