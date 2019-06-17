@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_Project.OknaDodwania;
 
 namespace WPF_Project.Widoki
 {
@@ -23,6 +24,7 @@ namespace WPF_Project.Widoki
     public partial class ListPage : Page
     {
         public int x;
+        public TextBox textbox13;
 
         public ListPage()
         {
@@ -289,6 +291,15 @@ namespace WPF_Project.Widoki
             }
             else
                 menuItem_position.IsEnabled = false;
+        }
+
+        private void CreateNewList_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(5);
+            creationWindow.ShowDialog();
+
+            int id = RepositoryWorkUnit.Instance.AlbumCollections.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
+            tabControl.Items.Add(getTabItemOf(id));
         }
     }
 }

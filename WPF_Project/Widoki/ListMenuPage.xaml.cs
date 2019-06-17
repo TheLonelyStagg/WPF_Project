@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Entities;
 using Interfaces;
 using Repositories;
+using WPF_Project.OknaDodwania;
 
 namespace WPF_Project.Widoki
 {
@@ -53,6 +54,14 @@ namespace WPF_Project.Widoki
             }
 
             this.NavigationService.Navigate(new ListPage(indexesList));
+        }
+
+        private void CreateNewList_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(5);
+            creationWindow.ShowDialog();
+
+            listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
         }
     }
 }

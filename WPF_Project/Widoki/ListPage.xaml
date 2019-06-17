@@ -25,7 +25,7 @@
         <Menu Grid.Row="0" >
             <MenuItem Header="Lista">
                 <MenuItem Header="Otwórz nową"/>
-                <MenuItem Header="Stwórz nową"/>
+                <MenuItem Header="Stwórz nową" Name="createNewList" Click="CreateNewList_Click"/>
                 <MenuItem Header="Zapisz" Click="SaveList_Click"/>
                 <MenuItem Header="Usuń aktualną" Click="DeleteList_Click"/>
                 <MenuItem Header="Zmień nazwę"/>
