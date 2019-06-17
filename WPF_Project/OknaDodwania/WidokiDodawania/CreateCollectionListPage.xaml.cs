@@ -24,11 +24,13 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
         private Window _context;
         private bool isEdit;
         private AlbumCollectionSet _albumCollection;
+        
 
         public CreateCollectionListPage(Window context, AlbumCollectionSet albumColection = null)
         {
             InitializeComponent();
             _context = context;
+           
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
@@ -51,7 +53,7 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
 
             RepositoryWorkUnit.Instance.AlbumCollections.Insert(collection);
 
-            _context.Close();
+            _context.DialogResult = true;
         }
     }
 }

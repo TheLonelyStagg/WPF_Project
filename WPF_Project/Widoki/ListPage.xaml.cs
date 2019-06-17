@@ -299,8 +299,15 @@ namespace WPF_Project.Widoki
             CreateWindow creationWindow = new CreateWindow(5);
             creationWindow.ShowDialog();
 
-            int id = RepositoryWorkUnit.Instance.AlbumCollections.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
-            tabControl.Items.Add(getTabItemOf(id));
+            if(creationWindow.DialogResult == true)
+            {
+                int id = RepositoryWorkUnit.Instance.AlbumCollections.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
+                TabItem nowy = getTabItemOf(id);
+                tabControl.Items.Add(nowy);
+                nowy.Focus();
+
+            }
+            
         }
 
         private void MenuItemItem_add_Click(object sender, RoutedEventArgs e)

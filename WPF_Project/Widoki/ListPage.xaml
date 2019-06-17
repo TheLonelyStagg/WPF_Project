@@ -48,16 +48,6 @@
             <!-- info o tabsach https://www.wpf-tutorial.com/tabcontrol/using-the-tabcontrol/ -->
         </TabControl>
 
-        <StatusBar Grid.Row="2">
-            
-            <Label>
-                <Label.Content>
-                    <MultiBinding StringFormat="Ilość pozycji: {0} [ {1} aktualnie zaznaczonych ]">
-                        <Binding  />
-                        <Binding />
-                    </MultiBinding>
-                </Label.Content>
-            </Label>
-        </StatusBar>
+        
     </Grid>
 </Page>

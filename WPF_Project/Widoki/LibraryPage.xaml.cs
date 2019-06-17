@@ -27,10 +27,12 @@ namespace WPF_Project.Widoki
     /// </summary>
     public partial class LibraryPage : Page
     {
+        private List<Expander> listOfExpanders;
+
         public LibraryPage()
         {
             InitializeComponent();
-
+            listOfExpanders = new List<Expander>();
             /*
             listView.ItemsSource = RepositoryWorkUnit.Instance.Albums.Get();
             
@@ -40,7 +42,7 @@ namespace WPF_Project.Widoki
             */
 
             InitializeSourceItems();
-
+            
         }
 
         private void AuthorHeader_MenuItem_Click(object sender, RoutedEventArgs e)
@@ -92,6 +94,7 @@ namespace WPF_Project.Widoki
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Key");
             view.Filter = AlbumFilter;
             view.GroupDescriptions.Add(groupDescription);
+            
         }
 
         private bool AlbumFilter(object item)
@@ -132,6 +135,27 @@ namespace WPF_Project.Widoki
         private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(listView.ItemsSource).Refresh();
+        }
+
+        private void WrapExpanders_Click(object sender, RoutedEventArgs e)
+        {
+            foreach(Expander exp in listOfExpanders)
+            {
+                exp.IsExpanded = false;
+            }
+        }
+
+        private void UnwrapExpanders_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Expander exp in listOfExpanders)
+            {
+                exp.IsExpanded = true;
+            }
+        }
+
+        private void Expander_Initialized(object sender, EventArgs e)
+        {
+            listOfExpanders.Add(sender as Expander);
         }
     }
 
