@@ -33,7 +33,7 @@
             </MenuItem>
             <MenuItem Header="Pozycja" Name="menuItem_position">
                 <MenuItem Header="Otwórz w bibliotece" Name="menuItemItem_openInLib" IsEnabled="False"/>
-                <MenuItem Header="Dodaj" Name="menuItemItem_add"/>
+                <MenuItem Header="Dodaj" Name="menuItemItem_add" Click="MenuItemItem_add_Click"/>
                 <MenuItem Header="Edytuj" Name="menuItemItem_edit" IsEnabled="False"/>
                 <MenuItem Header="Usuń" Name="menuItemItem_delete" IsEnabled="False"/>
             </MenuItem>

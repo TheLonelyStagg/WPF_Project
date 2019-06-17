@@ -97,6 +97,9 @@
     <Compile Include="OknaDodwania\WidokiDodawania\CreateCollectionListPage.xaml.cs">
       <DependentUpon>CreateCollectionListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OknaDodwania\WidokiDodawania\CreateCollectionRecordPage.xaml.cs">
+      <DependentUpon>CreateCollectionRecordPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OknaDodwania\WidokiDodawania\CreateFormatPage.xaml.cs">
       <DependentUpon>CreateFormatPage.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,9 @@
     </Compile>
     <Compile Include="OknaList\EntitiesListWindow.xaml.cs">
       <DependentUpon>EntitiesListWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OknaList\WidokiList\AlbumsList.xaml.cs">
+      <DependentUpon>AlbumsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="OknaList\WidokiList\AuthorsList.xaml.cs">
       <DependentUpon>AuthorsList.xaml</DependentUpon>
@@ -145,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OknaDodwania\WidokiDodawania\CreateCollectionRecordPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OknaDodwania\WidokiDodawania\CreateFormatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -154,6 +164,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OknaList\EntitiesListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OknaList\WidokiList\AlbumsList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

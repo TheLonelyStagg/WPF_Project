@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="Model.AlbumCollectionSet" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AlbumSet" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AuthorSet" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CollectionRecordSet" Width="1.5" PointX="6" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CollectionRecordSet" Width="2" PointX="6.625" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.FormatSet" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.GenreSet" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_AlbumCollectionCollectionRecord" ManuallyRouted="false" />

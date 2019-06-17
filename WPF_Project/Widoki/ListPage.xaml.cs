@@ -157,6 +157,7 @@ namespace WPF_Project.Widoki
         private TabItem getTabItemOf(int pageID)
         {
             TabItem tabItem = new TabItem();
+            tabItem.Tag = pageID;
 
             ListView listView = new ListView();
 
@@ -300,6 +301,25 @@ namespace WPF_Project.Widoki
 
             int id = RepositoryWorkUnit.Instance.AlbumCollections.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
             tabControl.Items.Add(getTabItemOf(id));
+        }
+
+        private void MenuItemItem_add_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow creationWindow = new CreateWindow(6);
+            creationWindow.ShowDialog();
+
+            TabItem tab =(TabItem) tabControl.SelectedItem;
+
+            int id = (int)tab.Tag;
+
+            AlbumCollectionSet album = RepositoryWorkUnit.Instance.AlbumCollections.Get().FirstOrDefault(x => x.Id == id);
+            int recordID = RepositoryWorkUnit.Instance.CollectionRecords.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
+            CollectionRecordSet record = RepositoryWorkUnit.Instance.CollectionRecords.Get().FirstOrDefault(x => x.Id == recordID);
+            record.AlbumCollectionId = album.Id;
+
+            album.CollectionRecordSets.Add(record);
+
+
         }
     }
 }

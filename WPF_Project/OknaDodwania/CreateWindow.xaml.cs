@@ -50,6 +50,10 @@ namespace WPF_Project.OknaDodwania
                 case 5:
                     Loaded += CreateCollectionList_Page;
                     break;
+                //tworzenie rekordu listy
+                case 6:
+                    Loaded += CreateCollectionRecord_Page;
+                    break;
             }
         }
 
@@ -136,6 +140,11 @@ namespace WPF_Project.OknaDodwania
             {
                 windowScreen.NavigationService.Navigate(new CreateCollectionListPage(this));
             }
+        }
+
+        private void CreateCollectionRecord_Page(object sender, RoutedEventArgs e)
+        {
+            windowScreen.NavigationService.Navigate(new CreateCollectionRecordPage(this));
         }
     }
 }

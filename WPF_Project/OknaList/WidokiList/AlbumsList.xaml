@@ -1,0 +1,80 @@
+﻿<Window x:Class="WPF_Project.OknaList.WidokiList.AlbumsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Project.Widoki"
+        mc:Ignorable="d"
+        Title="AlbumsList" Height="450" Width="800">
+    <Window.Resources>
+        <local:AuthorsNamesValueConverter x:Key="AuthorsNamesValueConverter" />
+        <local:GenresValueConverter x:Key="GenresValueConverter" />
+        <local:ColumnsWidthConverter x:Key="ColumnsWidthConverter"/>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition  Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <ListView Grid.Row="1" Name="albumListView" SelectionMode="Single" >
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn Header="Num." 
+                                    Width="{Binding ElementName=albumListView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=5}" 
+                                    DisplayMemberBinding="{Binding Path=Value.Id}"/>
+                    <GridViewColumn Header="Autor" 
+                                    Width="{Binding ElementName=albumListView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=30}" 
+                                    DisplayMemberBinding="{Binding Path=Value.AuthorSets, Converter={StaticResource AuthorsNamesValueConverter}}" />
+                    <!-- info o nagłówkach w ListMenuWindow -->
+                    <GridViewColumn Header="Tytuł" 
+                                    Width="{Binding ElementName=albumListView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=25}" 
+                                    DisplayMemberBinding="{Binding Path=Value.Name}" />
+                    <GridViewColumn Header="Rok wydania" 
+                                    Width="{Binding ElementName=albumListView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=15}" 
+                                    DisplayMemberBinding="{Binding Path=Value.ReleaseDate}" />
+                    <GridViewColumn Header="Gatunki" 
+                                    Width="{Binding ElementName=albumListView, Path=ActualWidth, Converter={StaticResource ColumnsWidthConverter}, ConverterParameter=25}" 
+                                    DisplayMemberBinding="{Binding Path=Value.GenreSets, Converter={StaticResource GenresValueConverter}}" />
+                </GridView>
+            </ListView.View>
+
+            <!-- o tym co niżej tutaj: https://www.wpf-tutorial.com/listview-control/listview-grouping/-->
+            <!-- chodzi ogołem żeby grupowało po autorach i żeby móc to na liście rozwijać i zwijać autorami-->
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" VerticalAlignment="Bottom" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+            <Label>Szukaj</Label>
+            <TextBox x:Name="txtFilter" Margin="3" TextChanged="TxtFilter_TextChanged" Width="242"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="3" Content="Wybierz" x:Name="albumSelectedButton" Click="AlbumSelectedButton_Click"></Button>
+            <Button Margin="3" Content="Wróć" x:Name="returnBtn" Click="ReturnBtn_Click"></Button>
+        </StackPanel>
+        
+    </Grid>
+</Window>

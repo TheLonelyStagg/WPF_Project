@@ -1,0 +1,47 @@
+﻿<Page x:Class="WPF_Project.OknaDodwania.WidokiDodawania.CreateCollectionRecordPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:WPF_Project.OknaDodwania.WidokiDodawania"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="500"
+      Title="CreateCollectionRecordPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.4*" />
+            <RowDefinition Height="0.7*" />
+            <RowDefinition Height="0.7*" />
+
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" HorizontalAlignment="Center" x:Name="albumTopLabel" FontWeight="Bold">Dodaj rekord</Label>
+        <StackPanel  Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Height="auto">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Wybierz album..</Label>
+            <Button Content="Albumy" Margin="3" Width="60" Height="30" x:Name="chooseAlbumBtn" Click="ChooseAlbumBtn_Click"></Button>
+            <Label Width="100" Margin="3" VerticalAlignment="Center" x:Name="choosedAlbumName"></Label>
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="2" Orientation="Horizontal" Height="auto">
+            <Label Width="100" Margin="3" VerticalAlignment="Center">Wybierz format:</Label>
+            <xctk:CheckComboBox x:Name="collectionRecordFormatType" 
+                             HorizontalAlignment="Center" 
+                             VerticalAlignment="Center" 
+                             ItemSelectionChanged="CollectionRecordFormatType_ItemSelectionChanged"
+                             Margin="0,12" Width="214" Height="20" />
+        </StackPanel>
+
+        <StackPanel  Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Height="30" HorizontalAlignment="Right">
+            <Button Margin="3" Width="60" Content="Dodaj" x:Name="addRecordBtn" Click="AddRecordBtn_Click"></Button>
+            <Button Margin="3" Width="60" Content="Wróć" x:Name="returnButton" Click="ReturnButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>
