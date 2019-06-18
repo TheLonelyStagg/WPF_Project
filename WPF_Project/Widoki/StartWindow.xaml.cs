@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Common;
 using Entities;
 using Interfaces;
 using Repositories;
@@ -37,6 +38,20 @@ namespace WPF_Project.Widoki
         {
             this.NavigationService.Navigate(new ListMenuPage());
             
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (((App)Application.Current)._skin.skin == SkinEnum.Default)
+            {
+                ((App)Application.Current).SendChangeSkin(SkinEnum.Nightmod);
+            }
+            else
+            {
+                ((App)Application.Current).SendChangeSkin(SkinEnum.Default);
+            }
+
+            //Application.Current.MainWindow.Close();
         }
     }
 }

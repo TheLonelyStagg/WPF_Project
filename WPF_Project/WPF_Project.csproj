@@ -84,6 +84,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Skin.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="OknaDodwania\CreateWindow.xaml.cs">
       <DependentUpon>CreateWindow.xaml</DependentUpon>

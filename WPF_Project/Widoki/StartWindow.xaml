@@ -41,7 +41,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1">Zmień styl</Button>
+            <Button Grid.Column="1" Click="Button_Click">Zmień styl</Button>
         </Grid>
     </Grid>
 </Page>
