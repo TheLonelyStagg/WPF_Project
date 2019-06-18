@@ -27,7 +27,7 @@
             <MenuItem Header="Główne">
                 <MenuItem Header="Zwiń wszystkie" Click="WrapExpanders_Click"/>
                 <MenuItem Header="Rozwiń wszystkie" Click="UnwrapExpanders_Click"/>
-                <MenuItem Header="Zamknij"/>
+                <MenuItem Header="Powrót" Command="BrowseBack" />
             </MenuItem>
             <MenuItem Header="Album">
                 <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" Click="CreateAlbum_MenuItem_Click" />

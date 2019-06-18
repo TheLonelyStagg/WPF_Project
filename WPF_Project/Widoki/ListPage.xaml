@@ -26,10 +26,9 @@
             <MenuItem Header="Lista">
                 <MenuItem Header="Otwórz nową"/>
                 <MenuItem Header="Stwórz nową" Name="createNewList" Click="CreateNewList_Click"/>
-                <MenuItem Header="Zapisz" Click="SaveList_Click"/>
                 <MenuItem Header="Usuń aktualną" Click="DeleteList_Click"/>
-                <MenuItem Header="Zmień nazwę"/>
                 <MenuItem Header="Zamknij otwartą" Click="CloseList_Click"/>
+                <MenuItem Header="Powrót" Command="BrowseBack" />
             </MenuItem>
             <MenuItem Header="Pozycja" Name="menuItem_position">
                 <MenuItem Header="Otwórz w bibliotece" Name="menuItemItem_openInLib" IsEnabled="False"/>
@@ -37,10 +36,7 @@
                 <MenuItem Header="Edytuj" Name="menuItemItem_edit" IsEnabled="False"/>
                 <MenuItem Header="Usuń" Name="menuItemItem_delete" Click="MenuItemItem_delete_Click" IsEnabled="False"/>
             </MenuItem>
-            <MenuItem Header="Szukaj">
-
-            </MenuItem>
-            <MenuItem  Command="Print"/>
+            <MenuItem  Command="Print" InputGestureText="Ctrl + P"/>
 
         </Menu>
 

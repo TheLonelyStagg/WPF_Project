@@ -27,7 +27,7 @@ namespace WPF_Project.Widoki
         public ListMenuPage()
         {
             InitializeComponent();
-            listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
+            //listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
         }
 
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,13 +66,21 @@ namespace WPF_Project.Widoki
 
         private void Btn_Delete_Click(object sender, RoutedEventArgs e)
         {
-            AlbumCollectionSet albumCollection = listView.SelectedItem as AlbumCollectionSet;
-            foreach(CollectionRecordSet record in albumCollection.CollectionRecordSets.ToList())
+            foreach(AlbumCollectionSet albumCollection in listView.SelectedItems)
             {
-                RepositoryWorkUnit.Instance.CollectionRecords.Delete(record);
+                foreach (CollectionRecordSet record in albumCollection.CollectionRecordSets.ToList())
+                {
+                    RepositoryWorkUnit.Instance.CollectionRecords.Delete(record);
+                }
+                RepositoryWorkUnit.Instance.AlbumCollections.Delete(albumCollection);
             }
-            RepositoryWorkUnit.Instance.AlbumCollections.Delete(albumCollection);
+            
+            listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
+            listView.UnselectAll();
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
             listView.ItemsSource = RepositoryWorkUnit.Instance.AlbumCollections.Get();
         }
     }

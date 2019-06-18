@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WPF_Project.Widoki"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ListMenuPage">
+      Title="ListMenuPage" Loaded="Page_Loaded">
     <Page.Resources>
         <local:ColumnsWidthConverter x:Key="ColumnsWidthConverter"/>
     </Page.Resources>
@@ -52,6 +52,7 @@
                 <Button Margin="3" x:Name="createNewList" Click="CreateNewList_Click">Utwórz nową listę</Button>
                 <Button Margin="3" IsEnabled="False" Name="btn_Open" Click="Btn_Open_Click">Otwórz wybrane</Button>
                 <Button Margin="3" IsEnabled="False" Name="btn_Delete" Click="Btn_Delete_Click">Usuń wybrane</Button>
+                <Button Margin="3 20 3 3" IsEnabled="True" Command="BrowseBack">Powrót</Button>
             </StackPanel>
         </Grid>
 

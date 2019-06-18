@@ -266,26 +266,33 @@ namespace WPF_Project.Widoki
             }
         }
 
-        private void SaveList_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void CloseList_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Are u sure, and so on
-            //      Sejwiki
-
-            tabControl.Items.RemoveAt(tabControl.SelectedIndex);
-            
+            tabControl.Items.RemoveAt(tabControl.SelectedIndex);     
         }
 
         private void DeleteList_Click(object sender, RoutedEventArgs e)
         {
-            //TODO: Are u sure, and so on
+            var dialogResult = MessageBox.Show(
+                "Czy na pewno chcesz usunąć listę o nazwie \"" + ((TabItem)tabControl.SelectedItem).Header + "\"",
+                "Usuń", 
+                MessageBoxButton.YesNo, 
+                MessageBoxImage.Warning);
+            
+            if(dialogResult == MessageBoxResult.Yes)
+            {
+                int id = (int)((TabItem)tabControl.SelectedItem).Tag;
+                AlbumCollectionSet albumCollection = RepositoryWorkUnit.Instance.AlbumCollections.Get(id);
+                foreach (CollectionRecordSet record in albumCollection.CollectionRecordSets.ToList())
+                {
+                    RepositoryWorkUnit.Instance.CollectionRecords.Delete(record);
+                }
+                RepositoryWorkUnit.Instance.AlbumCollections.Delete(albumCollection);
 
-            tabControl.Items.RemoveAt(tabControl.SelectedIndex);
-
+                tabControl.Items.RemoveAt(tabControl.SelectedIndex);
+            }
+            
+            
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -329,13 +336,15 @@ namespace WPF_Project.Widoki
             CollectionRecordSet record = RepositoryWorkUnit.Instance.CollectionRecords.Get().FirstOrDefault(x => x.Id == recordID);
             record.AlbumCollectionId = album.Id;
 
-            album.CollectionRecordSets.Add(record);
+            //album.CollectionRecordSets.Add(record);
 
-            //tutaj testowo;
+            RepositoryWorkUnit.Instance.CollectionRecords.Update(record, record.Id);
+
             tabControl.Items.Remove(tab);
 
             TabItem nowy = getTabItemOf(id);
             tabControl.Items.Add(nowy);
+
             nowy.Focus();
 
         }
