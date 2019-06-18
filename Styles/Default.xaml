@@ -3,5 +3,6 @@
                     xmlns:local="clr-namespace:Styles">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Resources/WhiteBackground.xaml"/>
+        <ResourceDictionary Source="Resources/BlackFont.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

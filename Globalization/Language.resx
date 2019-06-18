@@ -117,7 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="album" xml:space="preserve">
+    <value>Album</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>Browse Back</value>
+  </data>
+  <data name="collist" xml:space="preserve">
+    <value>Collection lists</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="general" xml:space="preserve">
+    <value>General</value>
+  </data>
   <data name="library" xml:space="preserve">
     <value>Library</value>
+  </data>
+  <data name="style" xml:space="preserve">
+    <value>Change style</value>
+  </data>
+  <data name="unwrap" xml:space="preserve">
+    <value>Unwrap all</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Program title / Hello, etc.</value>
+  </data>
+  <data name="wrap" xml:space="preserve">
+    <value>Wrap all</value>
   </data>
 </root>

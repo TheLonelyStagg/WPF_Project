@@ -4,5 +4,6 @@
              xmlns:local="clr-namespace:WPF_Project">
     <Application.Resources>
         <SolidColorBrush x:Key="NormalBackground" Color="Yellow"/>
+        <SolidColorBrush x:Key="NormalFont" Color="Black"/>
     </Application.Resources>
 </Application>

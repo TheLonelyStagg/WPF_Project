@@ -7,7 +7,8 @@
       
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LibraryPage">
+      Title="LibraryPage"
+      xmlns:lang="clr-namespace:Globalization;assembly=Globalization">
 
     <Page.Resources>
         <local:AuthorsNamesValueConverter x:Key="AuthorsNamesValueConverter" />
@@ -24,15 +25,15 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" >
-            <MenuItem Header="Główne">
-                <MenuItem Header="Zwiń wszystkie" Click="WrapExpanders_Click"/>
-                <MenuItem Header="Rozwiń wszystkie" Click="UnwrapExpanders_Click"/>
-                <MenuItem Header="Powrót" Command="BrowseBack" />
+            <MenuItem Header="{x:Static lang:Language.general}">
+                <MenuItem Header="{x:Static lang:Language.wrap}" Click="WrapExpanders_Click"/>
+                <MenuItem Header="{x:Static lang:Language.unwrap}" Click="UnwrapExpanders_Click"/>
+                <MenuItem Header="{x:Static lang:Language.back}" Command="BrowseBack" />
             </MenuItem>
-            <MenuItem Header="Album">
-                <MenuItem Header="Dodaj" Name="CreateAlbum_MenuItem" Click="CreateAlbum_MenuItem_Click" />
-                <MenuItem Header="Edytuj" Name="EditAlbum_MenuItem" Click="EditAlbum_MenuItem_Click"/>
-                <MenuItem Header="Usuń"/>
+            <MenuItem Header="{x:Static lang:Language.album}">
+                <MenuItem Header="{x:Static lang:Language.add}" Name="CreateAlbum_MenuItem" Click="CreateAlbum_MenuItem_Click" />
+                <MenuItem Header="{x:Static lang:Language.edit}" Name="EditAlbum_MenuItem" Click="EditAlbum_MenuItem_Click"/>
+                <MenuItem Header="{x:Static lang:Language.delete}"/>
             </MenuItem>
             <MenuItem Header="Autor" Name="AuthorHeader_MenuItem" Click="AuthorHeader_MenuItem_Click">
             </MenuItem>

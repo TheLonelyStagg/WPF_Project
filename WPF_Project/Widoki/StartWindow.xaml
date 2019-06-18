@@ -30,9 +30,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="0">Tytuł programu / Witaj itd.</Label>
+            <Label Grid.Row="0" Foreground="{StaticResource NormalFont}" Content="{x:Static lang:Language.welcome}"/>
             <Button Grid.Row="1" Click="LibraryButton_OnClick" Content="{x:Static lang:Language.library}"/>
-            <Button Grid.Row="2" Click="ListMenuButton_OnClcik">Listy kolekcji</Button>
+            <Button Grid.Row="2" Click="ListMenuButton_OnClcik" Content="{x:Static lang:Language.collist}"/>
         </Grid>
 
         <Grid Grid.Row="0" Grid.ColumnSpan="3">
@@ -41,7 +41,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="1" Click="Button_Click">Zmień styl</Button>
+            <Button Grid.Column="1" Click="Button_Click" Content="{x:Static lang:Language.style}"/>
         </Grid>
     </Grid>
 </Page>
