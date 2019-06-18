@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Skin.cs" />
+    <Compile Include="SkinEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

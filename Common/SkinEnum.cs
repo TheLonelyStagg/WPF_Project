@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Common
 {
-    public enum Skin
+    public enum SkinEnum
     {
         Default,
         Nightmod
