@@ -23,6 +23,7 @@ namespace WPF_Project.OknaDodwania
     {
         private Object _entity;
         private int _id;
+        public object additionalVariable;
 
         public CreateWindow(int widok, object entity = null)
         {
@@ -54,7 +55,15 @@ namespace WPF_Project.OknaDodwania
                 case 6:
                     Loaded += CreateCollectionRecord_Page;
                     break;
+                case 7:
+                    Loaded += CreateOpenCollection_Page;
+                    break;
             }
+        }
+
+        public object getAdditionalVariable()
+        {
+            return additionalVariable;
         }
 
         private void CreateUser_Page(object sender, RoutedEventArgs e)
@@ -145,6 +154,11 @@ namespace WPF_Project.OknaDodwania
         private void CreateCollectionRecord_Page(object sender, RoutedEventArgs e)
         {
             windowScreen.NavigationService.Navigate(new CreateCollectionRecordPage(this));
+        }
+
+        private void CreateOpenCollection_Page(object sender, RoutedEventArgs e)
+        {
+            windowScreen.NavigationService.Navigate(new CreateOpenCollectionPage(this));
         }
     }
 }
