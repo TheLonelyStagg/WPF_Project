@@ -24,14 +24,13 @@
 
         <Menu Grid.Row="0" >
             <MenuItem Header="Lista">
-                <MenuItem Header="Otwórz nową"/>
+                <MenuItem Header="Otwórz nową" Click="MenuItem_Click"/>
                 <MenuItem Header="Stwórz nową" Name="createNewList" Click="CreateNewList_Click"/>
                 <MenuItem Header="Usuń aktualną" Click="DeleteList_Click"/>
                 <MenuItem Header="Zamknij otwartą" Click="CloseList_Click"/>
                 <MenuItem Header="Powrót" Command="BrowseBack" />
             </MenuItem>
             <MenuItem Header="Pozycja" Name="menuItem_position">
-                <MenuItem Header="Otwórz w bibliotece" Name="menuItemItem_openInLib" IsEnabled="False"/>
                 <MenuItem Header="Dodaj" Name="menuItemItem_add" Click="MenuItemItem_add_Click"/>
                 <MenuItem Header="Edytuj" Name="menuItemItem_edit" IsEnabled="False"/>
                 <MenuItem Header="Usuń" Name="menuItemItem_delete" Click="MenuItemItem_delete_Click" IsEnabled="False"/>
