@@ -295,9 +295,17 @@ namespace WPF_Project.Widoki
             if(tabControl.Items.Count >0)
             {
                 menuItem_position.IsEnabled = true;
+                menuItemItem_deleteList.IsEnabled = true;
+                menuItemItem_closeList.IsEnabled = true;
             }
             else
+            {
                 menuItem_position.IsEnabled = false;
+                menuItemItem_deleteList.IsEnabled = false;
+                menuItemItem_closeList.IsEnabled = false;
+            }
+
+                
         }
 
         private void CreateNewList_Click(object sender, RoutedEventArgs e)

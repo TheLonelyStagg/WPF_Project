@@ -26,8 +26,8 @@
             <MenuItem Header="Lista">
                 <MenuItem Header="Otwórz nową" Click="MenuItem_Click"/>
                 <MenuItem Header="Stwórz nową" Name="createNewList" Click="CreateNewList_Click"/>
-                <MenuItem Header="Usuń aktualną" Click="DeleteList_Click"/>
-                <MenuItem Header="Zamknij otwartą" Click="CloseList_Click"/>
+                <MenuItem Header="Usuń aktualną" Click="DeleteList_Click" Name="menuItemItem_deleteList"/>
+                <MenuItem Header="Zamknij otwartą" Click="CloseList_Click" Name="menuItemItem_closeList"/>
                 <MenuItem Header="Powrót" Command="BrowseBack" />
             </MenuItem>
             <MenuItem Header="Pozycja" Name="menuItem_position">
