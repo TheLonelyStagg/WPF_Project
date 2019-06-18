@@ -81,7 +81,7 @@ namespace WPF_Project.OknaDodwania.WidokiDodawania
             }
 
             RepositoryWorkUnit.Instance.CollectionRecords.Insert(newRecord);
-            _context.Close();
+            _context.DialogResult = true;
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)

@@ -241,7 +241,17 @@ namespace WPF_Project.Widoki
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             menuItem_position.IsEnabled = true;
-            int howManySelected = ((ListView)((TabItem)tabControl.SelectedItem).Content).SelectedItems.Count;
+            TabItem ti = tabControl.SelectedItem as TabItem;
+            int howManySelected = 0;
+            if (ti!= null)
+            {
+                ListView lv = ti.Content as ListView;
+                if(lv != null)
+                {
+                    howManySelected = lv.SelectedItems.Count;
+                }
+            }
+
             if (howManySelected > 0)
             {
                 if (howManySelected == 1)
@@ -328,28 +338,29 @@ namespace WPF_Project.Widoki
         {
             CreateWindow creationWindow = new CreateWindow(6);
             creationWindow.ShowDialog();
+            if(creationWindow.DialogResult == true)
+            {
+                TabItem tab = (TabItem)tabControl.SelectedItem;
 
-            TabItem tab =(TabItem) tabControl.SelectedItem;
+                int id = (int)tab.Tag;
 
-            int id = (int)tab.Tag;
+                AlbumCollectionSet album = RepositoryWorkUnit.Instance.AlbumCollections.Get().FirstOrDefault(x => x.Id == id);
+                int recordID = RepositoryWorkUnit.Instance.CollectionRecords.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
 
-            AlbumCollectionSet album = RepositoryWorkUnit.Instance.AlbumCollections.Get().FirstOrDefault(x => x.Id == id);
-            int recordID = RepositoryWorkUnit.Instance.CollectionRecords.Get().Select(x => x.Id).DefaultIfEmpty(0).Max();
+                CollectionRecordSet record = RepositoryWorkUnit.Instance.CollectionRecords.Get().FirstOrDefault(x => x.Id == recordID);
+                record.AlbumCollectionId = album.Id;
 
-            CollectionRecordSet record = RepositoryWorkUnit.Instance.CollectionRecords.Get().FirstOrDefault(x => x.Id == recordID);
-            record.AlbumCollectionId = album.Id;
+                //album.CollectionRecordSets.Add(record);
 
-            //album.CollectionRecordSets.Add(record);
+                RepositoryWorkUnit.Instance.CollectionRecords.Update(record, record.Id);
 
-            RepositoryWorkUnit.Instance.CollectionRecords.Update(record, record.Id);
+                tabControl.Items.Remove(tab);
 
-            tabControl.Items.Remove(tab);
+                TabItem nowy = getTabItemOf(id);
+                tabControl.Items.Add(nowy);
 
-            TabItem nowy = getTabItemOf(id);
-            tabControl.Items.Add(nowy);
-
-            nowy.Focus();
-
+                nowy.Focus();
+            }
         }
 
         private void MenuItemItem_delete_Click(object sender, RoutedEventArgs e)
